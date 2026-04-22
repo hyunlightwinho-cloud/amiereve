@@ -25,7 +25,7 @@ export default function Error({
         </p>
         <button
           onClick={reset}
-          className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-brand-yellow text-brand-dark font-bold hover:bg-brand-yellow-dark transition-colors duration-200"
+          className="inline-flex items-center justify-center px-8 py-4 bg-brand-yellow text-brand-dark font-bold hover:bg-brand-yellow-dark transition-colors duration-200"
         >
           다시 시도
         </button>

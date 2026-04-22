@@ -104,7 +104,7 @@ export default function HeroSection() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50"
       >
         <svg width="20" height="30" viewBox="0 0 20 30" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <rect x="1" y="1" width="18" height="28" rx="9" />
+          <rect x="1" y="1" width="18" height="28" rx="0" />
           <path d="M10 8v6" strokeLinecap="round" />
         </svg>
         <span className="text-[10px] tracking-[0.2em] uppercase">Scroll</span>

@@ -13,7 +13,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-brand-yellow text-brand-dark font-bold hover:bg-brand-yellow-dark transition-colors duration-200"
+          className="inline-flex items-center justify-center px-8 py-4 bg-brand-yellow text-brand-dark font-bold hover:bg-brand-yellow-dark transition-colors duration-200"
         >
           홈으로 돌아가기
         </Link>
