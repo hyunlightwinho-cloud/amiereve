@@ -1,34 +1,34 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Aperture, Play, Globe, Video, UtensilsCrossed, Coffee, Scissors, GraduationCap, ChevronDown } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import SectionTitle from '@/components/ui/SectionTitle'
+import Link from 'next/link'
 
-/* ─────────────────────────────────────────────
-   Section 1: 광고대행 & 미디어 운영
-───────────────────────────────────────────── */
 const service01Checks = [
   'SNS 광고 기획 및 집행',
   '영상 콘텐츠 운영',
-  '브랜드 채널 이상화',
+  '브랜드 채널 운영대행',
   '성과 리포트 제공',
 ]
 
 function Service01Section() {
   return (
-    <section className="grid md:grid-cols-2 min-h-[560px]">
-      {/* 이미지 */}
+    <section id="ad" className="grid md:grid-cols-2 min-h-[560px]">
       <motion.div
         initial={{ opacity: 0, x: -60 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="bg-gray-200 min-h-[320px] md:min-h-0"
-      />
+        className="relative min-h-[320px] md:min-h-0 overflow-hidden"
+      >
+        <Image src="/images/gallery/photo-01.jpg" alt="광고대행 현장" fill className="object-cover" sizes="50vw" />
+        <div className="absolute inset-0 bg-black/20" />
+      </motion.div>
 
-      {/* 카드 */}
       <motion.div
         initial={{ opacity: 0, x: 60 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -38,12 +38,11 @@ function Service01Section() {
       >
         <div className="max-w-md">
           <span className="text-brand-yellow text-sm font-semibold tracking-widest lowercase">service 01</span>
-          <h2 className="text-white font-bold mt-3 mb-5" style={{ fontSize: '2rem', lineHeight: 1.25 }}>
+          <h2 className="text-white font-extrabold mt-3 mb-5 text-3xl md:text-4xl leading-tight tracking-tight">
             광고대행 &<br />미디어 운영
           </h2>
           <p className="text-white/70 leading-relaxed mb-6">
-            전략적인 SNS 광고와 미디어 운영으로 브랜드의 존재감을 키웁니다.<br />
-            데이터 기반의 성과 최적화를 통해 실질적인 ROI를 달성합니다.
+            전략적인 SNS 광고와 미디어 운영으로 브랜드의 존재감을 키웁니다.
           </p>
           <ul className="space-y-2 mb-8">
             {service01Checks.map((item) => (
@@ -53,16 +52,13 @@ function Service01Section() {
               </li>
             ))}
           </ul>
-          <Button variant="outline">문의하기</Button>
+          <Link href="/contact"><Button variant="outline">문의하기</Button></Link>
         </div>
       </motion.div>
     </section>
   )
 }
 
-/* ─────────────────────────────────────────────
-   Section 2: 인플루언서·유튜버 브랜딩
-───────────────────────────────────────────── */
 const platformIcons = [
   { Icon: Aperture, label: 'Instagram' },
   { Icon: Play, label: 'YouTube' },
@@ -79,8 +75,7 @@ const service02Checks = [
 
 function Service02Section() {
   return (
-    <section className="grid md:grid-cols-2 min-h-[560px]">
-      {/* 카드 */}
+    <section id="branding" className="grid md:grid-cols-2 min-h-[560px]">
       <motion.div
         initial={{ opacity: 0, x: -60 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -90,11 +85,10 @@ function Service02Section() {
       >
         <div className="max-w-md">
           <span className="text-brand-dark/60 text-sm font-semibold tracking-widest lowercase">service 02</span>
-          <h2 className="text-brand-dark font-bold mt-3 mb-5" style={{ fontSize: '2rem', lineHeight: 1.25 }}>
+          <h2 className="text-brand-dark font-extrabold mt-3 mb-5 text-3xl md:text-4xl leading-tight tracking-tight">
             인플루언서·유튜버<br />브랜딩
           </h2>
 
-          {/* 플랫폼 아이콘 */}
           <div className="flex gap-4 mb-6">
             {platformIcons.map(({ Icon, label }) => (
               <div key={label} className="flex flex-col items-center gap-1">
@@ -106,11 +100,6 @@ function Service02Section() {
             ))}
           </div>
 
-          {/* 뱃지 */}
-          <div className="inline-block bg-brand-dark text-white text-sm font-semibold px-4 py-2 rounded-full mb-6">
-            평균 팔로워 +340% 성장
-          </div>
-
           <ul className="space-y-2 mb-8">
             {service02Checks.map((item) => (
               <li key={item} className="flex items-center gap-2 text-brand-dark/80">
@@ -119,25 +108,24 @@ function Service02Section() {
               </li>
             ))}
           </ul>
-          <Button variant="primary">문의하기</Button>
+          <Link href="/contact"><Button variant="primary">문의하기</Button></Link>
         </div>
       </motion.div>
 
-      {/* 이미지 */}
       <motion.div
         initial={{ opacity: 0, x: 60 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="bg-gray-200 min-h-[320px] md:min-h-0 order-1 md:order-2"
-      />
+        className="relative min-h-[320px] md:min-h-0 overflow-hidden order-1 md:order-2"
+      >
+        <Image src="/images/gallery/photo-04.jpg" alt="인플루언서 브랜딩 현장" fill className="object-cover" sizes="50vw" />
+        <div className="absolute inset-0 bg-black/10" />
+      </motion.div>
     </section>
   )
 }
 
-/* ─────────────────────────────────────────────
-   Section 3: 소상공인 교육·컨설팅
-───────────────────────────────────────────── */
 const businessIcons = [
   { Icon: UtensilsCrossed, label: '식당' },
   { Icon: Coffee, label: '카페' },
@@ -147,7 +135,7 @@ const businessIcons = [
 
 const recommendList = [
   'SNS를 시작하고 싶은 소상공인',
-  '계정이 있지만 이상이 막막한 분',
+  '계정이 있지만 운영이 막막한 분',
   '매출과 연결되는 콘텐츠를 원하는 분',
 ]
 
@@ -160,17 +148,18 @@ const service03Checks = [
 
 function Service03Section() {
   return (
-    <section className="grid md:grid-cols-2 min-h-[560px]">
-      {/* 이미지 */}
+    <section id="education" className="grid md:grid-cols-2 min-h-[560px]">
       <motion.div
         initial={{ opacity: 0, x: -60 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="bg-gray-200 min-h-[320px] md:min-h-0"
-      />
+        className="relative min-h-[320px] md:min-h-0 overflow-hidden"
+      >
+        <Image src="/images/gallery/photo-02.jpg" alt="소상공인 교육 현장" fill className="object-cover" sizes="50vw" />
+        <div className="absolute inset-0 bg-black/20" />
+      </motion.div>
 
-      {/* 카드 */}
       <motion.div
         initial={{ opacity: 0, x: 60 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -180,11 +169,10 @@ function Service03Section() {
       >
         <div className="max-w-md">
           <span className="text-white/60 text-sm font-semibold tracking-widest lowercase">service 03</span>
-          <h2 className="text-white font-bold mt-3 mb-5" style={{ fontSize: '2rem', lineHeight: 1.25 }}>
+          <h2 className="text-white font-extrabold mt-3 mb-5 text-3xl md:text-4xl leading-tight tracking-tight">
             소상공인<br />교육·컨설팅
           </h2>
 
-          {/* 2x2 아이콘 그리드 */}
           <div className="grid grid-cols-4 gap-3 mb-6">
             {businessIcons.map(({ Icon, label }) => (
               <div
@@ -206,7 +194,6 @@ function Service03Section() {
             ))}
           </ul>
 
-          {/* 추천 박스 */}
           <div className="border border-white/30 rounded-xl p-4 mb-6">
             <p className="text-white/80 text-sm font-semibold mb-2">이런 분께 추천합니다</p>
             <ul className="space-y-1">
@@ -218,21 +205,18 @@ function Service03Section() {
             </ul>
           </div>
 
-          <Button variant="outline">문의하기</Button>
+          <Link href="/contact"><Button variant="outline">문의하기</Button></Link>
         </div>
       </motion.div>
     </section>
   )
 }
 
-/* ─────────────────────────────────────────────
-   Section 4: AI 마케팅 서비스 (2026)
-───────────────────────────────────────────── */
 const aiTools = [
-  { name: 'ChatGPT', desc: '콘텐츠 자동 생성' },
+  { name: 'ChatGPT', desc: '콘텐츠 기획·작성' },
   { name: 'Midjourney', desc: 'AI 이미지 제작' },
   { name: 'Runway', desc: 'AI 영상 편집' },
-  { name: 'Notion AI', desc: '전략 문서 자동화' },
+  { name: 'Notion AI', desc: '전략 문서 정리' },
 ]
 
 const aiServices = [
@@ -243,9 +227,8 @@ const aiServices = [
 
 function AiSection() {
   return (
-    <section className="py-32 bg-gradient-to-r from-[#1A1A1A] via-[#2D1B69] to-[#1A1A1A] text-center">
+    <section id="ai" className="py-32 bg-gradient-to-r from-[#1A1A1A] via-[#2D1B69] to-[#1A1A1A] text-center">
       <div className="container mx-auto px-6">
-        {/* 뱃지 */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -261,7 +244,7 @@ function AiSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-white text-4xl md:text-5xl font-bold mb-4"
+          className="text-white text-4xl md:text-5xl font-extrabold mb-4 tracking-tight"
         >
           AI와 함께하는<br />마케팅의 미래
         </motion.h2>
@@ -275,7 +258,6 @@ function AiSection() {
           최신 AI 툴을 활용해 콘텐츠 생산성을 극대화합니다.
         </motion.p>
 
-        {/* AI 툴 카드 2x2 */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">
           {aiTools.map((tool, i) => (
             <motion.div
@@ -284,7 +266,7 @@ function AiSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white/10 hover:bg-white/20 hover:shadow-[0_0_20px_rgba(108,63,197,0.5)] rounded-xl p-6 transition-all duration-300 cursor-pointer"
+              className="bg-white/10 hover:bg-white/20 rounded-xl p-6 transition-all duration-300"
             >
               <div className="text-white font-bold mb-1">{tool.name}</div>
               <div className="text-white/50 text-sm">{tool.desc}</div>
@@ -292,7 +274,6 @@ function AiSection() {
           ))}
         </div>
 
-        {/* AI 서비스 목록 */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center max-w-2xl mx-auto">
           {aiServices.map((svc, i) => (
             <motion.div
@@ -313,47 +294,34 @@ function AiSection() {
   )
 }
 
-/* ─────────────────────────────────────────────
-   Section 5: 진행 프로세스
-───────────────────────────────────────────── */
 const processSteps = [
-  { num: '01', label: '상담 요청' },
-  { num: '02', label: '니즈 파악' },
-  { num: '03', label: '전략 수립' },
-  { num: '04', label: '콘텐츠 제작' },
-  { num: '05', label: '배포·운영' },
-  { num: '06', label: '성과 리포트' },
+  { num: '01', label: '상담 요청', tip: '빠른 온라인 상담 신청' },
+  { num: '02', label: '니즈 파악', tip: '업종·목표 심층 분석' },
+  { num: '03', label: '전략 수립', tip: '맞춤 마케팅 플랜 설계' },
+  { num: '04', label: '콘텐츠 제작', tip: '전문 크리에이터 제작' },
+  { num: '05', label: '배포·운영', tip: '플랫폼 최적화 운영' },
+  { num: '06', label: '성과 리포트', tip: 'KPI 기반 성과 분석' },
 ]
 
 function ProcessSection() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
-
-  const tooltips: Record<string, string> = {
-    '01': '빠른 온라인 상담 신청',
-    '02': '업종·목표 심층 분석',
-    '03': '맞춤 마케팅 플랜 설계',
-    '04': '전문 크리에이터 제작',
-    '05': '플랫폼 최적화 운영',
-    '06': 'KPI 기반 성과 분석',
-  }
 
   return (
     <section className="py-24 bg-brand-light">
       <div className="container mx-auto px-6">
         <SectionTitle title="진행 프로세스" subtitle="체계적인 6단계로 성과를 만들어 드립니다" />
 
-        {/* 가로 타임라인 (데스크탑) */}
         <div className="hidden md:flex items-center justify-between mt-12 relative">
           {processSteps.map((step, i) => (
             <div key={step.num} className="flex items-center flex-1">
               <div
-                className="relative flex flex-col items-center cursor-pointer group"
+                className="relative flex flex-col items-center cursor-pointer"
                 onMouseEnter={() => setHoveredStep(i)}
                 onMouseLeave={() => setHoveredStep(null)}
               >
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="w-14 h-14 rounded-full bg-brand-dark text-white flex items-center justify-center font-bold text-lg relative"
+                  className="w-14 h-14 rounded-full bg-brand-dark text-white flex items-center justify-center font-bold text-lg"
                 >
                   {step.num}
                 </motion.div>
@@ -368,7 +336,7 @@ function ProcessSection() {
                       transition={{ duration: 0.2 }}
                       className="absolute bottom-full mb-3 bg-brand-dark text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap shadow-lg"
                     >
-                      {tooltips[step.num]}
+                      {step.tip}
                       <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-brand-dark" />
                     </motion.div>
                   )}
@@ -384,7 +352,6 @@ function ProcessSection() {
           ))}
         </div>
 
-        {/* 세로 타임라인 (모바일) */}
         <div className="md:hidden space-y-6 mt-12 relative">
           <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-brand-border" />
           {processSteps.map((step, i) => (
@@ -408,9 +375,6 @@ function ProcessSection() {
   )
 }
 
-/* ─────────────────────────────────────────────
-   Section 6: FAQ 아코디언
-───────────────────────────────────────────── */
 const faqs = [
   {
     q: '계약 기간은 최소 얼마인가요?',
@@ -432,22 +396,10 @@ const faqs = [
     q: '소상공인 교육은 오프라인인가요?',
     a: '온라인과 오프라인 모두 진행합니다. 지역에 따라 방문 교육도 가능하며, 온라인 1:1 줌(Zoom) 교육도 운영 중입니다.',
   },
-  {
-    q: '성과가 없으면 어떻게 하나요?',
-    a: '계약 기간 내 목표 KPI 달성을 위해 지속적으로 전략을 조정합니다. 성과 리포트를 매월 제공하며, 미달 시 추가 서비스를 제공하는 조항을 계약에 포함할 수 있습니다.',
-  },
 ]
 
 function FaqItem({ faq, index }: { faq: (typeof faqs)[0]; index: number }) {
   const [open, setOpen] = useState(false)
-
-  const toggle = () => setOpen((v) => !v)
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      toggle()
-    }
-  }
 
   return (
     <motion.div
@@ -458,8 +410,7 @@ function FaqItem({ faq, index }: { faq: (typeof faqs)[0]; index: number }) {
       className="border border-brand-border rounded-xl overflow-hidden"
     >
       <button
-        onClick={toggle}
-        onKeyDown={handleKeyDown}
+        onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         className="w-full flex items-center justify-between px-6 py-5 text-left bg-white hover:bg-brand-light transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow"
       >
@@ -504,9 +455,6 @@ function FaqSection() {
   )
 }
 
-/* ─────────────────────────────────────────────
-   Page
-───────────────────────────────────────────── */
 export default function ServicesPage() {
   return (
     <main>

@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,15 +8,8 @@ import SectionTitle from '@/components/ui/SectionTitle'
 import Tag from '@/components/ui/Tag'
 import cases, { type CaseItem } from '@/data/cases'
 
-const CATEGORIES = ['전체', '인플루언서 브랜딩', '소상공인 컨설팅', '광고대행', 'AI 서비스']
-
 export default function CasesClient() {
-  const [selectedCategory, setSelectedCategory] = useState('전체')
-
-  const filtered: CaseItem[] =
-    selectedCategory === '전체'
-      ? cases
-      : cases.filter((c) => c.category === selectedCategory)
+  const filtered: CaseItem[] = cases
 
   return (
     <main className="pt-16">
@@ -25,30 +17,8 @@ export default function CasesClient() {
       <section className="bg-brand-dark py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="text-brand-yellow text-xs tracking-[0.25em] uppercase font-semibold mb-4">Cases</p>
-          <h1 className="text-white text-4xl md:text-5xl font-bold leading-tight mb-4">고객 사례</h1>
+          <h1 className="text-white text-4xl md:text-5xl font-extrabold leading-tight mb-4 tracking-tight">고객 사례</h1>
           <p className="text-white/50 text-lg">실제 협업한 고객들의 성장 스토리</p>
-        </div>
-      </section>
-
-      {/* 카테고리 필터 */}
-      <section className="py-8 border-b border-brand-border bg-white sticky top-16 z-10">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={[
-                  'px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer',
-                  selectedCategory === cat
-                    ? 'bg-brand-dark text-white'
-                    : 'bg-white text-brand-dark border border-brand-border hover:border-brand-dark',
-                ].join(' ')}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
         </div>
       </section>
 
