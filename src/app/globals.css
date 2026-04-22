@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors */
+  --color-brand-yellow: #FEE500;
+  --color-brand-yellow-dark: #F5B800;
+  --color-brand-yellow-light: #FFFDE7;
+  --color-brand-dark: #1A1A1A;
+  --color-brand-gray: #666666;
+  --color-brand-light: #F5F5F5;
+  --color-brand-border: #E0E0E0;
+  --color-brand-purple: #6C3FC5;
+  --color-brand-purple-light: #F0EAFB;
+  --color-brand-green: #00875A;
+
+  /* Font Family */
+  --font-sans: 'Pretendard Variable', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+
+  /* Animations */
+  --animate-pulse-ring: pulse-ring 1.5s ease-out infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.6s ease-out forwards;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(254, 229, 0, 0.6); }
+  100% { box-shadow: 0 0 0 20px rgba(254, 229, 0, 0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Masonry Grid */
+.masonry-grid {
+  display: flex;
+  margin-left: -16px;
+  width: auto;
+}
+.masonry-grid_column {
+  padding-left: 16px;
+  background-clip: padding-box;
+}
+.masonry-grid_column > div {
+  margin-bottom: 16px;
+}
+
+/* react-day-picker brand color override */
+.rdp-day_selected,
+.rdp-day_selected:focus-visible,
+.rdp-day_selected:hover {
+  background-color: #FEE500 !important;
+  color: #1A1A1A !important;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: #1A1A1A;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Premium headline tracking */
+h1, h2, h3 {
+  letter-spacing: -0.025em;
+}
+
+/* Text selection */
+::selection {
+  background: #FEE500;
+  color: #1A1A1A;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth image transitions */
+img {
+  image-rendering: -webkit-optimize-contrast;
+}
