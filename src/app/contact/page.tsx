@@ -19,32 +19,32 @@ export default function ContactPage() {
             아래 양식을 작성하시면 24시간 내 연락드립니다
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl mx-auto">
-            <div className="flex items-center gap-3 bg-white/8 border border-white/12 rounded-2xl px-6 py-4 shadow-lg shadow-black/20 backdrop-blur-sm">
-              <div className="w-9 h-9 rounded-xl bg-brand-yellow/15 flex items-center justify-center shrink-0">
-                <Mail size={17} className="text-brand-yellow" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl mx-auto">
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl px-6 py-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border-t-4 border-brand-yellow">
+              <div className="w-11 h-11 rounded-xl bg-brand-yellow/15 flex items-center justify-center">
+                <Mail size={20} className="text-brand-dark" />
               </div>
-              <div className="text-left">
-                <p className="text-white/50 text-[11px] font-semibold tracking-widest uppercase mb-0.5">Email</p>
-                <p className="text-white text-sm font-semibold">amie-reve@naver.com</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 bg-white/8 border border-white/12 rounded-2xl px-6 py-4 shadow-lg shadow-black/20 backdrop-blur-sm">
-              <div className="w-9 h-9 rounded-xl bg-brand-yellow/15 flex items-center justify-center shrink-0">
-                <MessageCircle size={17} className="text-brand-yellow" />
-              </div>
-              <div className="text-left">
-                <p className="text-white/50 text-[11px] font-semibold tracking-widest uppercase mb-0.5">Kakao</p>
-                <p className="text-white text-sm font-semibold">카카오 채널로 문의</p>
+              <div className="text-center">
+                <p className="text-brand-gray text-[10px] font-bold tracking-widest uppercase mb-1">Email</p>
+                <p className="text-brand-dark text-sm font-bold leading-snug">amie-reve@naver.com</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 bg-white/8 border border-white/12 rounded-2xl px-6 py-4 shadow-lg shadow-black/20 backdrop-blur-sm">
-              <div className="w-9 h-9 rounded-xl bg-brand-yellow/15 flex items-center justify-center shrink-0">
-                <Clock size={17} className="text-brand-yellow" />
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl px-6 py-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border-t-4 border-brand-yellow">
+              <div className="w-11 h-11 rounded-xl bg-brand-yellow/15 flex items-center justify-center">
+                <MessageCircle size={20} className="text-brand-dark" />
               </div>
-              <div className="text-left">
-                <p className="text-white/50 text-[11px] font-semibold tracking-widest uppercase mb-0.5">Hours</p>
-                <p className="text-white text-sm font-semibold">평일 09:00 ~ 18:00</p>
+              <div className="text-center">
+                <p className="text-brand-gray text-[10px] font-bold tracking-widest uppercase mb-1">Kakao</p>
+                <p className="text-brand-dark text-sm font-bold leading-snug">카카오 채널 문의</p>
+              </div>
+            </div>
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl px-6 py-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border-t-4 border-brand-yellow">
+              <div className="w-11 h-11 rounded-xl bg-brand-yellow/15 flex items-center justify-center">
+                <Clock size={20} className="text-brand-dark" />
+              </div>
+              <div className="text-center">
+                <p className="text-brand-gray text-[10px] font-bold tracking-widest uppercase mb-1">Hours</p>
+                <p className="text-brand-dark text-sm font-bold leading-snug">평일 09:00 ~ 18:00</p>
               </div>
             </div>
           </div>
