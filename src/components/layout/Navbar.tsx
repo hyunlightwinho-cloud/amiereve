@@ -56,7 +56,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex flex-col leading-none" style={{ color: isTransparent ? '#fff' : '#1A1A1A' }}>
-            <span className="font-bold text-lg tracking-widest uppercase">Amie Reve</span>
+            <span className="font-extrabold text-lg tracking-widest uppercase">Amie Reve</span>
             <span className="text-[10px] tracking-[0.2em] font-medium" style={{ color: isTransparent ? 'rgba(255,255,255,0.55)' : '#999' }}>아미레브</span>
           </Link>
 
@@ -117,7 +117,7 @@ export default function Navbar() {
             >
               <div className="flex items-center justify-between p-5 border-b border-brand-border">
                 <div className="flex flex-col leading-none">
-                  <span className="font-bold text-lg tracking-widest uppercase text-brand-dark">Amie Reve</span>
+                  <span className="font-extrabold text-lg tracking-widest uppercase text-brand-dark">Amie Reve</span>
                   <span className="text-[10px] tracking-[0.2em] text-brand-gray">아미레브</span>
                 </div>
                 <button onClick={() => setMenuOpen(false)} aria-label="메뉴 닫기">

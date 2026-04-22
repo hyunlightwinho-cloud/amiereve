@@ -21,7 +21,7 @@ export default function CaseSection() {
             transition={{ duration: 0.7 }}
           >
             <Tag className="mb-4">유튜브 운영대행</Tag>
-            <h3 className="text-white text-3xl font-bold mb-2">이미나 약사</h3>
+            <h3 className="text-white text-3xl font-extrabold mb-2 tracking-tight">이미나 약사</h3>
             <p className="text-white/50 text-sm mb-6">@yak_up_mina · 운영 진행 중</p>
 
             <div className="flex flex-wrap gap-2 mb-8">

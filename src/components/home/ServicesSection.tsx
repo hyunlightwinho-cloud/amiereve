@@ -94,8 +94,8 @@ export default function ServicesSection() {
                 </div>
 
                 {/* Text */}
-                <h3 className="text-base font-bold text-brand-dark mb-2 leading-snug">{svc.title}</h3>
-                <p className="text-sm text-brand-gray leading-relaxed flex-1">{svc.desc}</p>
+                <h3 className="text-base font-extrabold text-brand-dark mb-2 leading-snug tracking-tight">{svc.title}</h3>
+                <p className="text-sm font-medium text-brand-gray leading-relaxed flex-1">{svc.desc}</p>
 
                 {/* Link */}
                 <Link

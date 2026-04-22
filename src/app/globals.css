@@ -66,16 +66,39 @@ html {
 
 body {
   font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
   color: #1A1A1A;
   background: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
-/* Premium headline tracking */
-h1, h2, h3 {
-  letter-spacing: -0.025em;
+/* Typography — Toss-grade */
+h1 {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+  word-break: keep-all;
+}
+h2 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  word-break: keep-all;
+}
+h3 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  word-break: keep-all;
+}
+p, li, span {
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* Text selection */

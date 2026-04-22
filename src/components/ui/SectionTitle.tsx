@@ -28,7 +28,7 @@ export default function SectionTitle({ title, subtitle, className, light = false
             <span className="w-5 h-px bg-brand-yellow" />
           </div>
           {subtitle && (
-            <p className={cn('text-2xl md:text-3xl font-bold tracking-tight', light ? 'text-white' : 'text-brand-dark')}>
+            <p className={cn('text-2xl md:text-3xl font-extrabold tracking-tight', light ? 'text-white' : 'text-brand-dark')}>
               {subtitle}
             </p>
           )}
@@ -39,14 +39,14 @@ export default function SectionTitle({ title, subtitle, className, light = false
           <div>
             <h2
               className={cn(
-                'text-3xl md:text-4xl font-bold leading-tight tracking-tight',
+                'text-3xl md:text-[2.6rem] font-extrabold leading-tight',
                 light ? 'text-white' : 'text-brand-dark',
               )}
             >
               {title}
             </h2>
             {subtitle && (
-              <p className={cn('mt-3 text-base', light ? 'text-white/60' : 'text-brand-gray')}>
+              <p className={cn('mt-3 text-base font-medium', light ? 'text-white/60' : 'text-brand-gray')}>
                 {subtitle}
               </p>
             )}

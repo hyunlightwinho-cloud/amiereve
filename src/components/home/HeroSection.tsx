@@ -38,8 +38,8 @@ export default function HeroSection() {
         </motion.div>
 
         <motion.h1
-          className="text-white font-bold leading-[1.15] tracking-tight mb-6"
-          style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.2rem)' }}
+          className="text-white font-extrabold mb-6"
+          style={{ fontSize: 'clamp(2.6rem, 6vw, 4.8rem)', letterSpacing: '-0.04em', lineHeight: 1.1 }}
         >
           {['브랜드의', '이야기를'].map((word, i) => (
             <motion.span
@@ -70,7 +70,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.55 }}
-          className="text-white/70 text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed"
+          className="text-white/70 text-base md:text-lg font-medium mb-10 max-w-xl mx-auto leading-relaxed"
         >
           인플루언서 브랜딩부터 소상공인 교육,<br className="hidden md:block" />
           AI 콘텐츠 마케팅까지 — 함께 성장하는 브랜드 파트너
