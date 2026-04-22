@@ -66,7 +66,7 @@ function HeroSection() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-          className="relative rounded-xl w-full aspect-[4/3] overflow-hidden ring-1 ring-white/10"
+          className="relative w-full aspect-[4/3] overflow-hidden ring-1 ring-white/10"
         >
           <Image
             src="/images/about/about-hero.jpg"
@@ -135,7 +135,7 @@ function BrandStorySection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className={`relative rounded-2xl w-full aspect-[4/3] overflow-hidden ${block.reverse ? 'md:[direction:ltr]' : ''}`}
+              className={`relative w-full aspect-[4/3] overflow-hidden ${block.reverse ? 'md:[direction:ltr]' : ''}`}
             >
               <Image
                 src={block.image}
@@ -221,12 +221,12 @@ function TimelineSection() {
                     <motion.div
                       whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(0,0,0,0.12)' }}
                       transition={{ duration: 0.2 }}
-                      className={`inline-flex items-center gap-4 rounded-2xl px-6 py-5 shadow-md cursor-default w-full md:w-auto
+                      className={`inline-flex items-center gap-4 px-6 py-5 shadow-md cursor-default w-full md:w-auto
                         ${m.isNew ? 'bg-brand-purple text-white' : m.text === '추가 예정' ? 'bg-white/60 border-2 border-dashed border-brand-border text-brand-gray' : 'bg-white text-brand-dark'}
                       `}
                     >
                       {isRight && (
-                        <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0
+                        <div className={`w-11 h-11 flex items-center justify-center shrink-0
                           ${m.isNew ? 'bg-white/15' : m.text === '추가 예정' ? 'bg-brand-border/50' : 'bg-brand-yellow/15'}`}>
                           <Icon size={20} className={m.isNew ? 'text-brand-yellow' : m.text === '추가 예정' ? 'text-brand-gray' : 'text-brand-dark'} />
                         </div>
@@ -248,7 +248,7 @@ function TimelineSection() {
                         )}
                       </div>
                       {!isRight && (
-                        <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0
+                        <div className={`w-11 h-11 flex items-center justify-center shrink-0
                           ${m.isNew ? 'bg-white/15' : m.text === '추가 예정' ? 'bg-brand-border/50' : 'bg-brand-yellow/15'}`}>
                           <Icon size={20} className={m.isNew ? 'text-brand-yellow' : m.text === '추가 예정' ? 'text-brand-gray' : 'text-brand-dark'} />
                         </div>
@@ -281,7 +281,7 @@ function TeamSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="bg-brand-light rounded-2xl p-10 text-center w-full max-w-sm"
+              className="bg-brand-light p-10 text-center w-full max-w-sm"
             >
               <div className="w-28 h-28 rounded-full mx-auto mb-5 overflow-hidden bg-brand-border relative">
                 {member.photo ? (

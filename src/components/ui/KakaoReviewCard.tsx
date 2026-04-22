@@ -7,7 +7,7 @@ interface KakaoReviewCardProps {
 export default function KakaoReviewCard({ review }: KakaoReviewCardProps) {
   return (
     <div
-      className="rounded-xl overflow-hidden shadow-md"
+      className="overflow-hidden shadow-md"
       style={{ background: '#EFEFE4' }}
     >
       {/* Header */}

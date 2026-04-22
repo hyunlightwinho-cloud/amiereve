@@ -74,22 +74,22 @@ export default function ServicesSection() {
             const Icon = svc.icon
             return (
               <motion.div key={svc.title} variants={itemVariants}>
-              <TiltCard className="relative bg-white rounded-xl border border-brand-border p-6 flex flex-col group cursor-pointer h-full">
+              <TiltCard className="relative bg-white border border-brand-border p-6 flex flex-col group cursor-pointer h-full">
                 {/* Hover accent bottom */}
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-yellow rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-yellow opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 {/* Number */}
                 <span className="text-[11px] font-bold text-brand-border tracking-widest mb-4">{svc.number}</span>
 
                 {/* Badge */}
                 {svc.badge && (
-                  <span className="absolute top-5 right-5 bg-brand-purple text-white text-[10px] font-bold px-2.5 py-1 rounded-full animate-pulse-ring">
+                  <span className="absolute top-5 right-5 bg-brand-purple text-white text-[10px] font-bold px-2.5 py-1 animate-pulse-ring">
                     {svc.badge}
                   </span>
                 )}
 
                 {/* Icon */}
-                <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${svc.color} bg-brand-yellow/10 flex items-center justify-center mb-5 border border-brand-yellow/20`}>
+                <div className={`w-11 h-11 bg-gradient-to-br ${svc.color} bg-brand-yellow/10 flex items-center justify-center mb-5 border border-brand-yellow/20`}>
                   <Icon size={20} className="text-brand-dark" />
                 </div>
 

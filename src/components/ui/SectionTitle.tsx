@@ -35,7 +35,7 @@ export default function SectionTitle({ title, subtitle, className, light = false
         </>
       ) : (
         <div className="flex items-start gap-4">
-          <div className="w-1 bg-brand-yellow rounded-full self-stretch min-h-8 shrink-0 mt-1" />
+          <div className="w-1 bg-brand-yellow self-stretch min-h-8 shrink-0 mt-1" />
           <div>
             <h2
               className={cn(

@@ -18,7 +18,7 @@ export default function Button({
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center rounded-full font-semibold transition-all duration-[250ms] cursor-pointer',
+        'inline-flex items-center justify-center font-semibold transition-all duration-[250ms] cursor-pointer',
         {
           'bg-brand-dark text-white hover:bg-brand-yellow hover:text-brand-dark': variant === 'primary',
           'bg-brand-yellow text-brand-dark hover:bg-brand-yellow-dark': variant === 'secondary',

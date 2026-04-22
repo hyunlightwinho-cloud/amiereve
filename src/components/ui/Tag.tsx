@@ -10,7 +10,7 @@ export default function Tag({ children, color = 'bg-brand-yellow text-brand-dark
   return (
     <span
       className={cn(
-        'inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold',
+        'inline-flex items-center px-3 py-1 text-xs font-semibold',
         color,
         className,
       )}

@@ -29,7 +29,7 @@ export default function GallerySection() {
           {galleryImages.map((img, i) => (
             <div
               key={img.id}
-              className="relative rounded-xl overflow-hidden cursor-pointer group bg-brand-light"
+              className="relative overflow-hidden cursor-pointer group bg-brand-light"
               style={{ height: heights[i % heights.length] }}
               onClick={() => setLightboxIndex(i)}
             >

@@ -71,13 +71,13 @@ export default function Navbar() {
               >
                 {link.label}
                 {pathname === link.href && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-yellow rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-yellow" />
                 )}
               </Link>
             ))}
             <Link
               href="/contact"
-              className="bg-brand-yellow text-brand-dark text-sm font-bold px-5 py-2 rounded-full hover:bg-brand-yellow-dark transition-colors duration-200"
+              className="bg-brand-yellow text-brand-dark text-sm font-bold px-5 py-2 hover:bg-brand-yellow-dark transition-colors duration-200"
             >
               상담 예약
             </Link>
@@ -134,7 +134,7 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      className="block py-3 px-4 rounded-xl text-brand-dark font-medium hover:bg-brand-light transition-colors"
+                      className="block py-3 px-4 text-brand-dark font-medium hover:bg-brand-light transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -144,7 +144,7 @@ export default function Navbar() {
               <div className="p-5">
                 <Link
                   href="/contact"
-                  className="block text-center bg-brand-yellow text-brand-dark font-bold py-3 rounded-full hover:bg-brand-yellow-dark transition-colors"
+                  className="block text-center bg-brand-yellow text-brand-dark font-bold py-3 hover:bg-brand-yellow-dark transition-colors"
                 >
                   상담 예약
                 </Link>

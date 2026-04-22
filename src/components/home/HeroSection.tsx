@@ -84,13 +84,13 @@ export default function HeroSection() {
         >
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3.5 sm:px-8 sm:py-4 rounded-full bg-brand-yellow text-brand-dark font-bold hover:bg-brand-yellow-dark transition-all duration-200 shadow-lg shadow-brand-yellow/20"
+            className="inline-flex items-center justify-center px-6 py-3.5 sm:px-8 sm:py-4 bg-brand-yellow text-brand-dark font-bold hover:bg-brand-yellow-dark transition-all duration-200 shadow-lg shadow-brand-yellow/20"
           >
             무료 상담 예약
           </Link>
           <Link
             href="/services"
-            className="inline-flex items-center justify-center px-6 py-3.5 sm:px-8 sm:py-4 rounded-full border-2 border-white/70 text-white font-semibold hover:bg-white hover:text-brand-dark transition-all duration-200"
+            className="inline-flex items-center justify-center px-6 py-3.5 sm:px-8 sm:py-4 border-2 border-white/70 text-white font-semibold hover:bg-white hover:text-brand-dark transition-all duration-200"
           >
             서비스 보기 →
           </Link>

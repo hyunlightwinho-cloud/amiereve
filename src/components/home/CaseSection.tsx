@@ -31,11 +31,11 @@ export default function CaseSection() {
             </div>
 
             <div className="grid grid-cols-2 gap-4 mb-8">
-              <div className="bg-brand-yellow rounded-xl p-5">
+              <div className="bg-brand-yellow p-5">
                 <p className="text-brand-dark text-2xl font-bold">2.17천</p>
                 <p className="text-brand-dark/70 text-sm mt-1">구독자</p>
               </div>
-              <div className="bg-white/10 rounded-xl p-5">
+              <div className="bg-white/10 p-5">
                 <p className="text-white text-2xl font-bold">144개</p>
                 <p className="text-white/60 text-sm mt-1">업로드 영상</p>
               </div>
@@ -48,7 +48,7 @@ export default function CaseSection() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/cases"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-brand-dark transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-semibold px-6 py-3 hover:bg-white hover:text-brand-dark transition-all duration-200"
               >
                 사례 전체 보기 →
               </Link>
@@ -56,7 +56,7 @@ export default function CaseSection() {
                 href="https://www.youtube.com/@yak_up_mina"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white/60 font-semibold px-6 py-3 rounded-full hover:border-white/60 hover:text-white transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white/60 font-semibold px-6 py-3 hover:border-white/60 hover:text-white transition-all duration-200"
               >
                 채널 보기 <ExternalLink size={14} />
               </a>
@@ -70,7 +70,7 @@ export default function CaseSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="rounded-xl overflow-hidden border border-white/10">
+            <div className="overflow-hidden border border-white/10">
               {/* 채널 배너 */}
               <div className="bg-gradient-to-br from-[#1a5c35] to-[#0f3a21] px-8 py-10 text-center">
                 <p className="text-white/50 text-xs tracking-widest uppercase mb-3">약사 가르치는 1타강사</p>

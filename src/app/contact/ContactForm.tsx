@@ -168,7 +168,7 @@ export default function ContactForm() {
         <p className="text-brand-gray mb-8">24시간 내 연락드리겠습니다.</p>
         <a
           href="/"
-          className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-brand-dark text-white font-semibold hover:bg-brand-yellow hover:text-brand-dark transition-all duration-250"
+          className="inline-flex items-center justify-center px-8 py-3 bg-brand-dark text-white font-semibold hover:bg-brand-yellow hover:text-brand-dark transition-all duration-250"
         >
           홈으로 돌아가기
         </a>
@@ -202,7 +202,7 @@ export default function ContactForm() {
                     type="button"
                     onClick={() => toggleService(s)}
                     className={[
-                      'px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer',
+                      'px-4 py-2 text-sm font-medium border transition-all duration-200 cursor-pointer',
                       selected
                         ? 'bg-brand-dark text-white border-brand-dark'
                         : 'bg-white text-brand-dark border-brand-border hover:border-brand-dark',
@@ -218,7 +218,7 @@ export default function ContactForm() {
               disabled={formData.services.length === 0}
               onClick={() => setStep(2)}
               className={[
-                'w-full py-3 rounded-full font-semibold transition-all duration-200',
+                'w-full py-3 font-semibold transition-all duration-200',
                 formData.services.length > 0
                   ? 'bg-brand-dark text-white hover:bg-brand-yellow hover:text-brand-dark cursor-pointer'
                   : 'bg-brand-border text-brand-gray cursor-not-allowed',
@@ -275,7 +275,7 @@ export default function ContactForm() {
                           setFormData((prev) => ({ ...prev, time: t }))
                         }
                         className={[
-                          'py-2 rounded-lg text-sm font-medium border transition-all duration-200',
+                          'py-2 text-sm font-medium border transition-all duration-200',
                           booked
                             ? 'bg-brand-light text-brand-gray border-brand-border cursor-not-allowed line-through'
                             : selected
@@ -295,14 +295,14 @@ export default function ContactForm() {
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="flex-1 py-3 rounded-full border border-brand-border text-brand-dark font-semibold hover:bg-brand-light transition-all duration-200 cursor-pointer"
+                className="flex-1 py-3 border border-brand-border text-brand-dark font-semibold hover:bg-brand-light transition-all duration-200 cursor-pointer"
               >
                 이전
               </button>
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="flex-1 py-3 rounded-full bg-brand-dark text-white font-semibold hover:bg-brand-yellow hover:text-brand-dark transition-all duration-200 cursor-pointer"
+                className="flex-1 py-3 bg-brand-dark text-white font-semibold hover:bg-brand-yellow hover:text-brand-dark transition-all duration-200 cursor-pointer"
               >
                 다음
               </button>
@@ -333,7 +333,7 @@ export default function ContactForm() {
                     {...register('name')}
                     placeholder="홍길동"
                     className={[
-                      'w-full px-4 py-3 rounded-xl border text-sm outline-none transition-colors',
+                      'w-full px-4 py-3 border text-sm outline-none transition-colors',
                       errors.name
                         ? 'border-red-400 focus:border-red-500'
                         : 'border-brand-border focus:border-brand-dark',
@@ -353,7 +353,7 @@ export default function ContactForm() {
                     {...register('phone')}
                     placeholder="010-1234-5678"
                     className={[
-                      'w-full px-4 py-3 rounded-xl border text-sm outline-none transition-colors',
+                      'w-full px-4 py-3 border text-sm outline-none transition-colors',
                       errors.phone
                         ? 'border-red-400 focus:border-red-500'
                         : 'border-brand-border focus:border-brand-dark',
@@ -374,7 +374,7 @@ export default function ContactForm() {
                     type="email"
                     placeholder="example@email.com"
                     className={[
-                      'w-full px-4 py-3 rounded-xl border text-sm outline-none transition-colors',
+                      'w-full px-4 py-3 border text-sm outline-none transition-colors',
                       errors.email
                         ? 'border-red-400 focus:border-red-500'
                         : 'border-brand-border focus:border-brand-dark',
@@ -395,7 +395,7 @@ export default function ContactForm() {
                     rows={4}
                     placeholder="궁금하신 내용을 자유롭게 작성해주세요 (최소 10자)"
                     className={[
-                      'w-full px-4 py-3 rounded-xl border text-sm outline-none transition-colors resize-none',
+                      'w-full px-4 py-3 border text-sm outline-none transition-colors resize-none',
                       errors.message
                         ? 'border-red-400 focus:border-red-500'
                         : 'border-brand-border focus:border-brand-dark',
@@ -428,14 +428,14 @@ export default function ContactForm() {
                   <button
                     type="button"
                     onClick={() => setStep(2)}
-                    className="flex-1 py-3 rounded-full border border-brand-border text-brand-dark font-semibold hover:bg-brand-light transition-all duration-200 cursor-pointer"
+                    className="flex-1 py-3 border border-brand-border text-brand-dark font-semibold hover:bg-brand-light transition-all duration-200 cursor-pointer"
                   >
                     이전
                   </button>
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="flex-1 py-3 rounded-full bg-brand-dark text-white font-semibold hover:bg-brand-yellow hover:text-brand-dark transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+                    className="flex-1 py-3 bg-brand-dark text-white font-semibold hover:bg-brand-yellow hover:text-brand-dark transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
                   >
                     {submitting && <Loader2 size={18} className="animate-spin" />}
                     {submitting ? '전송 중...' : '상담 신청하기'}

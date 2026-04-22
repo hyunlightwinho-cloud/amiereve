@@ -29,7 +29,7 @@ export default function ReviewsSection() {
         >
           {reviewImages.map((img, idx) => (
             <SwiperSlide key={idx}>
-              <div className="rounded-xl overflow-hidden shadow-sm bg-white">
+              <div className="overflow-hidden shadow-sm bg-white">
                 <img
                   src={img.src}
                   alt={img.alt}

@@ -31,7 +31,7 @@ export default function CasesClient() {
               animate={{ opacity: 1, y: 0 }}
               className="flex flex-col items-center justify-center py-24 gap-4"
             >
-              <div className="w-16 h-16 rounded-full bg-brand-border flex items-center justify-center mb-2">
+              <div className="w-16 h-16 bg-brand-border flex items-center justify-center mb-2">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="1.5">
                   <rect x="3" y="3" width="18" height="18" rx="3" />
                   <path d="M9 9h6M9 13h4" strokeLinecap="round" />
@@ -51,7 +51,7 @@ export default function CasesClient() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.3, delay: i * 0.08 }}
-                    className="group bg-white rounded-xl overflow-hidden shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+                    className="group bg-white overflow-hidden shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
                   >
                     {/* 썸네일 */}
                     <div className="relative aspect-video bg-[#1a4a2e] overflow-hidden flex items-center justify-center">
@@ -70,7 +70,7 @@ export default function CasesClient() {
                         </div>
                       )}
                       {/* 배지 */}
-                      <span className="absolute top-3 right-3 bg-brand-yellow text-brand-dark text-xs font-bold px-3 py-1 rounded-full">
+                      <span className="absolute top-3 right-3 bg-brand-yellow text-brand-dark text-xs font-bold px-3 py-1">
                         {item.badge}
                       </span>
                     </div>
@@ -113,7 +113,7 @@ export default function CasesClient() {
           <p className="text-brand-dark/70 mb-8">아미레브와 함께 브랜드의 새로운 가능성을 열어보세요</p>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-brand-dark text-white font-bold hover:bg-brand-dark/90 transition-colors"
+            className="inline-flex items-center justify-center px-8 py-4 bg-brand-dark text-white font-bold hover:bg-brand-dark/90 transition-colors"
           >
             무료 상담 요청
           </Link>

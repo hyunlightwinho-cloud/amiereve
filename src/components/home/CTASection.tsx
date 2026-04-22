@@ -39,14 +39,14 @@ export default function CTASection() {
           >
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-brand-dark text-white font-bold hover:bg-black transition-colors duration-200 shadow-lg"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-dark text-white font-bold hover:bg-black transition-colors duration-200 shadow-lg"
             >
               무료 상담 예약
               <ArrowRight size={18} />
             </Link>
             <a
               href={process.env.NEXT_PUBLIC_KAKAO_CHANNEL_URL || '#'}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-brand-dark/25 text-brand-dark font-semibold hover:border-brand-dark transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-brand-dark/25 text-brand-dark font-semibold hover:border-brand-dark transition-colors duration-200"
             >
               <MessageCircle size={18} />
               카카오 문의

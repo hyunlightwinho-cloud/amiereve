@@ -92,7 +92,7 @@ function Service02Section() {
           <div className="flex gap-4 mb-6">
             {platformIcons.map(({ Icon, label }) => (
               <div key={label} className="flex flex-col items-center gap-1">
-                <div className="w-12 h-12 rounded-xl bg-brand-dark/10 flex items-center justify-center hover:bg-brand-dark/20 transition-colors">
+                <div className="w-12 h-12 bg-brand-dark/10 flex items-center justify-center hover:bg-brand-dark/20 transition-colors">
                   <Icon size={22} className="text-brand-dark" />
                 </div>
                 <span className="text-xs text-brand-dark/60">{label}</span>
@@ -177,7 +177,7 @@ function Service03Section() {
             {businessIcons.map(({ Icon, label }) => (
               <div
                 key={label}
-                className="group flex flex-col items-center gap-1.5 bg-white hover:bg-brand-yellow rounded-xl py-3 transition-colors cursor-pointer"
+                className="group flex flex-col items-center gap-1.5 bg-white hover:bg-brand-yellow py-3 transition-colors cursor-pointer"
               >
                 <Icon size={22} className="text-brand-dark" />
                 <span className="text-xs text-brand-dark font-medium">{label}</span>
@@ -194,7 +194,7 @@ function Service03Section() {
             ))}
           </ul>
 
-          <div className="border border-white/30 rounded-xl p-4 mb-6">
+          <div className="border border-white/30 p-4 mb-6">
             <p className="text-white/80 text-sm font-semibold mb-2">이런 분께 추천합니다</p>
             <ul className="space-y-1">
               {recommendList.map((txt) => (
@@ -234,7 +234,7 @@ function AiSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 bg-brand-purple text-white text-sm font-bold px-5 py-2 rounded-full mb-8 animate-pulse-ring"
+          className="inline-flex items-center gap-2 bg-brand-purple text-white text-sm font-bold px-5 py-2 mb-8 animate-pulse-ring"
         >
           ✦ NEW 2026
         </motion.div>
@@ -266,7 +266,7 @@ function AiSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white/10 hover:bg-white/20 rounded-xl p-6 transition-all duration-300"
+              className="bg-white/10 hover:bg-white/20 p-6 transition-all duration-300"
             >
               <div className="text-white font-bold mb-1">{tool.name}</div>
               <div className="text-white/50 text-sm">{tool.desc}</div>
@@ -334,7 +334,7 @@ function ProcessSection() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute bottom-full mb-3 bg-brand-dark text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap shadow-lg"
+                      className="absolute bottom-full mb-3 bg-brand-dark text-white text-xs px-3 py-1.5 whitespace-nowrap shadow-lg"
                     >
                       {step.tip}
                       <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-brand-dark" />
@@ -407,7 +407,7 @@ function FaqItem({ faq, index }: { faq: (typeof faqs)[0]; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.07 }}
-      className="border border-brand-border rounded-xl overflow-hidden"
+      className="border border-brand-border overflow-hidden"
     >
       <button
         onClick={() => setOpen((v) => !v)}

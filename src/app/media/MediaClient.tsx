@@ -43,7 +43,7 @@ export default function MediaClient() {
             {portfolio.map((item: PortfolioItem, idx: number) => (
               <div
                 key={item.id}
-                className="group relative rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-lg transition-all duration-300"
+                className="group relative overflow-hidden cursor-pointer shadow-sm hover:shadow-lg transition-all duration-300"
                 onClick={() => openPortfolioLightbox(idx)}
               >
                 <div className="relative overflow-hidden bg-brand-light" style={{ height: Math.max(160, 200 + (idx % 3) * 60) }}>
@@ -94,10 +94,10 @@ export default function MediaClient() {
                     <img
                       src={(slide as { src: string }).src}
                       alt={item?.alt ?? '포트폴리오'}
-                      className="max-w-full max-h-[80vh] object-contain rounded-xl"
+                      className="max-w-full max-h-[80vh] object-contain"
                     />
                     {item && (
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 rounded-b-xl">
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                         <Tag color="bg-brand-yellow text-brand-dark" className="mb-1">{item.category}</Tag>
                         <p className="text-white font-semibold text-sm">{item.title}</p>
                       </div>
