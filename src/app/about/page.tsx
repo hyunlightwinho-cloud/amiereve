@@ -1,13 +1,50 @@
 'use client'
 
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
+import { initParticlesEngine } from '@tsparticles/react'
+import { loadSlim } from '@tsparticles/slim'
 import { motion } from 'framer-motion'
+import { Flag, BookOpen, PlayCircle, Clock, Sparkles } from 'lucide-react'
 import SectionTitle from '@/components/ui/SectionTitle'
 import team from '@/data/team'
 
+const Particles = dynamic(
+  () => import('@tsparticles/react').then((m) => ({ default: m.Particles })),
+  { ssr: false },
+)
+
 function HeroSection() {
+  const [init, setInit] = useState(false)
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine)
+    }).then(() => setInit(true))
+  }, [])
+
   return (
     <section className="relative min-h-screen bg-brand-dark flex items-center overflow-hidden">
+      {init && (
+        <Particles
+          id="about-particles"
+          className="absolute inset-0 z-0"
+          options={{
+            background: { color: { value: 'transparent' } },
+            fpsLimit: 60,
+            particles: {
+              number: { value: 80, density: { enable: true } },
+              color: { value: '#ffffff' },
+              opacity: { value: { min: 0.05, max: 0.3 } },
+              size: { value: { min: 0.5, max: 2 } },
+              move: { enable: true, speed: 0.4, direction: 'none', random: true, outModes: 'out' },
+              links: { enable: false },
+            },
+            detectRetina: true,
+          }}
+        />
+      )}
       <div className="relative z-10 container mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -150,11 +187,11 @@ function MissionVisionSection() {
 }
 
 const milestones = [
-  { year: '2022', text: '아미레브 창립', isNew: false },
-  { year: '2023', text: '소상공인 SNS 교육 론칭', isNew: false },
-  { year: '2024', text: '유튜브 채널 운영대행 시작', isNew: false },
-  { year: '2025', text: '추가 예정', isNew: false },
-  { year: '2026', text: 'AI 콘텐츠 마케팅 서비스 론칭', isNew: true },
+  { year: '2022', text: '아미레브 창립', sub: '브랜드 마케팅의 첫 걸음', isNew: false, Icon: Flag },
+  { year: '2023', text: '소상공인 SNS 교육 론칭', sub: '현장 교육 프로그램 시작', isNew: false, Icon: BookOpen },
+  { year: '2024', text: '유튜브 채널 운영대행 시작', sub: '이미나 약사 채널 운영대행', isNew: false, Icon: PlayCircle },
+  { year: '2025', text: '추가 예정', sub: '', isNew: false, Icon: Clock },
+  { year: '2026', text: 'AI 콘텐츠 마케팅 서비스 론칭', sub: '차세대 AI 마케팅 서비스', isNew: true, Icon: Sparkles },
 ]
 
 function TimelineSection() {
@@ -164,37 +201,62 @@ function TimelineSection() {
         <SectionTitle title="아미레브 연혁" subtitle="작은 시작에서 큰 꿈으로" />
 
         <div className="relative mt-16">
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-brand-yellow -translate-x-1/2" />
-          <div className="md:hidden absolute left-5 top-0 bottom-0 w-0.5 bg-brand-yellow" />
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-brand-yellow/40 -translate-x-1/2" />
+          <div className="md:hidden absolute left-5 top-0 bottom-0 w-0.5 bg-brand-yellow/40" />
 
-          <div className="space-y-12">
+          <div className="space-y-10">
             {milestones.map((m, i) => {
               const isRight = i % 2 === 0
+              const Icon = m.Icon
               return (
                 <motion.div
                   key={m.year}
                   initial={{ opacity: 0, x: isRight ? -40 : 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.15 }}
+                  transition={{ duration: 0.5, delay: i * 0.12 }}
                   className={`relative flex items-center md:justify-center pl-14 md:pl-0 ${isRight ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 >
-                  <div className={`md:w-5/12 ${isRight ? 'md:text-right md:pr-10' : 'md:text-left md:pl-10'}`}>
-                    <div className={`inline-block rounded-xl px-5 py-4 shadow-sm ${m.isNew ? 'bg-brand-purple text-white' : 'bg-white text-brand-dark'}`}>
-                      <div className={`text-sm font-semibold mb-1 ${m.isNew ? 'text-brand-yellow' : 'text-brand-gray'}`}>
-                        {m.year}
-                      </div>
-                      <div className="font-semibold flex items-center gap-2 flex-wrap">
-                        {m.text}
-                        {m.isNew && (
-                          <span className="text-xs bg-brand-yellow text-brand-dark px-2 py-0.5 rounded-full font-bold">
-                            ✦ NEW
-                          </span>
+                  <div className={`md:w-5/12 ${isRight ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'}`}>
+                    <motion.div
+                      whileHover={{ y: -4, boxShadow: '0 16px 40px rgba(0,0,0,0.12)' }}
+                      transition={{ duration: 0.2 }}
+                      className={`inline-flex items-center gap-4 rounded-2xl px-6 py-5 shadow-md cursor-default w-full md:w-auto
+                        ${m.isNew ? 'bg-brand-purple text-white' : m.text === '추가 예정' ? 'bg-white/60 border-2 border-dashed border-brand-border text-brand-gray' : 'bg-white text-brand-dark'}
+                      `}
+                    >
+                      {isRight && (
+                        <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0
+                          ${m.isNew ? 'bg-white/15' : m.text === '추가 예정' ? 'bg-brand-border/50' : 'bg-brand-yellow/15'}`}>
+                          <Icon size={20} className={m.isNew ? 'text-brand-yellow' : m.text === '추가 예정' ? 'text-brand-gray' : 'text-brand-dark'} />
+                        </div>
+                      )}
+                      <div className={isRight ? 'text-left' : 'text-right flex-1'}>
+                        <div className={`text-xs font-bold tracking-widest mb-1 ${m.isNew ? 'text-brand-yellow' : 'text-brand-gray'}`}>
+                          {m.year}
+                        </div>
+                        <div className={`font-extrabold text-base tracking-tight ${m.text === '추가 예정' ? 'text-brand-gray' : ''}`}>
+                          {m.text}
+                          {m.isNew && (
+                            <span className="ml-2 text-xs bg-brand-yellow text-brand-dark px-2 py-0.5 rounded-full font-bold">
+                              ✦ NEW
+                            </span>
+                          )}
+                        </div>
+                        {m.sub && (
+                          <div className={`text-xs mt-1 ${m.isNew ? 'text-white/60' : 'text-brand-gray'}`}>{m.sub}</div>
                         )}
                       </div>
-                    </div>
+                      {!isRight && (
+                        <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0
+                          ${m.isNew ? 'bg-white/15' : m.text === '추가 예정' ? 'bg-brand-border/50' : 'bg-brand-yellow/15'}`}>
+                          <Icon size={20} className={m.isNew ? 'text-brand-yellow' : m.text === '추가 예정' ? 'text-brand-gray' : 'text-brand-dark'} />
+                        </div>
+                      )}
+                    </motion.div>
                   </div>
-                  <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-brand-yellow border-2 border-white shadow md:-translate-x-1/2" />
+
+                  <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-brand-yellow border-[3px] border-white shadow-md md:-translate-x-1/2 z-10" />
                 </motion.div>
               )
             })}
