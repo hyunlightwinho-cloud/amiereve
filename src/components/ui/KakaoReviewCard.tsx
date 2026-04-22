@@ -15,7 +15,7 @@ export default function KakaoReviewCard({ review }: KakaoReviewCardProps) {
         className="px-4 py-3 flex items-center gap-2"
         style={{ background: '#CDCDCD' }}
       >
-        <div className="w-7 h-7 rounded-full bg-brand-yellow flex items-center justify-center text-brand-dark text-xs font-bold">
+        <div className="w-7 h-7 bg-brand-yellow flex items-center justify-center text-brand-dark text-xs font-bold">
           A
         </div>
         <span className="text-brand-dark text-sm font-semibold">아미레브</span>
@@ -27,7 +27,6 @@ export default function KakaoReviewCard({ review }: KakaoReviewCardProps) {
         <div className="flex items-end gap-2">
           <div
             className="max-w-[80%] bg-white text-brand-dark text-sm px-4 py-3 leading-relaxed shadow-sm"
-            style={{ borderRadius: '18px 18px 18px 4px' }}
           >
             {review.question}
           </div>
@@ -37,7 +36,7 @@ export default function KakaoReviewCard({ review }: KakaoReviewCardProps) {
         <div className="flex items-end justify-end gap-2">
           <div
             className="max-w-[80%] text-brand-dark text-sm px-4 py-3 leading-relaxed shadow-sm"
-            style={{ background: '#FEE500', borderRadius: '18px 18px 4px 18px' }}
+            style={{ background: '#FEE500' }}
           >
             {review.answer}
           </div>

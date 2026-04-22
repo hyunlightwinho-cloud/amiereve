@@ -238,7 +238,7 @@ function TimelineSection() {
                         <div className={`font-extrabold text-base tracking-tight ${m.text === '추가 예정' ? 'text-brand-gray' : ''}`}>
                           {m.text}
                           {m.isNew && (
-                            <span className="ml-2 text-xs bg-brand-yellow text-brand-dark px-2 py-0.5 rounded-full font-bold">
+                            <span className="ml-2 text-xs bg-brand-yellow text-brand-dark px-2 py-0.5 font-bold">
                               ✦ NEW
                             </span>
                           )}

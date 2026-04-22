@@ -53,7 +53,7 @@ function StepIndicator({ current }: { current: number }) {
             <div className="flex flex-col items-center gap-1">
               <div
                 className={[
-                  'w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all duration-300',
+                  'w-9 h-9 flex items-center justify-center text-sm font-bold border-2 transition-all duration-300',
                   done
                     ? 'bg-brand-yellow border-brand-yellow text-brand-dark'
                     : active
@@ -159,7 +159,7 @@ export default function ContactForm() {
         transition={{ duration: 0.4 }}
         className="text-center py-20 px-6"
       >
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-brand-yellow mb-6">
+        <div className="inline-flex items-center justify-center w-20 h-20 bg-brand-yellow mb-6">
           <Check size={40} strokeWidth={3} className="text-brand-dark" />
         </div>
         <h2 className="text-2xl font-bold text-brand-dark mb-3">

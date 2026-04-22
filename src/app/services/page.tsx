@@ -321,7 +321,7 @@ function ProcessSection() {
               >
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="w-14 h-14 rounded-full bg-brand-dark text-white flex items-center justify-center font-bold text-lg"
+                  className="w-14 h-14 bg-brand-dark text-white flex items-center justify-center font-bold text-lg"
                 >
                   {step.num}
                 </motion.div>
@@ -363,7 +363,7 @@ function ProcessSection() {
               transition={{ duration: 0.4, delay: i * 0.1 }}
               className="flex items-center gap-5 pl-2"
             >
-              <div className="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center font-bold text-sm shrink-0 relative z-10">
+              <div className="w-10 h-10 bg-brand-dark text-white flex items-center justify-center font-bold text-sm shrink-0 relative z-10">
                 {step.num}
               </div>
               <span className="font-semibold text-brand-dark">{step.label}</span>

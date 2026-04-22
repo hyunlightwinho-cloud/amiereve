@@ -51,12 +51,23 @@
   margin-bottom: 16px;
 }
 
-/* react-day-picker brand color override */
+/* react-day-picker overrides */
 .rdp-day_selected,
 .rdp-day_selected:focus-visible,
 .rdp-day_selected:hover {
   background-color: #FEE500 !important;
   color: #1A1A1A !important;
+}
+.rdp-button,
+.rdp-day,
+.rdp-caption_label {
+  border-radius: 0 !important;
+}
+
+/* KakaoReviewCard chat bubble override */
+.kakao-bubble-left,
+.kakao-bubble-right {
+  border-radius: 0 !important;
 }
 
 /* Base */
