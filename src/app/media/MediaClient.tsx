@@ -55,10 +55,6 @@ export default function MediaClient() {
                     sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
                   />
                 </div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex flex-col items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
-                  <Tag color="bg-brand-yellow text-brand-dark">{item.category}</Tag>
-                  <p className="text-white font-semibold text-sm">{item.title}</p>
-                </div>
               </div>
             ))}
           </Masonry>
