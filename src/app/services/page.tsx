@@ -34,7 +34,7 @@ function Service01Section() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="bg-brand-dark flex items-center px-10 py-16"
+        className="bg-brand-dark flex items-center px-6 py-10 md:px-10 md:py-16"
       >
         <div className="max-w-md">
           <span className="text-brand-yellow text-sm font-semibold tracking-widest lowercase">service 01</span>
@@ -81,7 +81,7 @@ function Service02Section() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="bg-brand-yellow flex items-center px-10 py-16 order-2 md:order-1"
+        className="bg-brand-yellow flex items-center px-6 py-10 md:px-10 md:py-16 order-2 md:order-1"
       >
         <div className="max-w-md">
           <span className="text-brand-dark/60 text-sm font-semibold tracking-widest lowercase">service 02</span>
@@ -165,7 +165,7 @@ function Service03Section() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="bg-brand-green flex items-center px-10 py-16"
+        className="bg-brand-green flex items-center px-6 py-10 md:px-10 md:py-16"
       >
         <div className="max-w-md">
           <span className="text-white/60 text-sm font-semibold tracking-widest lowercase">service 03</span>
@@ -173,7 +173,7 @@ function Service03Section() {
             소상공인<br />교육·컨설팅
           </h2>
 
-          <div className="grid grid-cols-4 gap-3 mb-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
             {businessIcons.map(({ Icon, label }) => (
               <div
                 key={label}
@@ -227,7 +227,7 @@ const aiServices = [
 
 function AiSection() {
   return (
-    <section id="ai" className="py-32 bg-gradient-to-r from-[#1A1A1A] via-[#2D1B69] to-[#1A1A1A] text-center">
+    <section id="ai" className="py-20 md:py-32 bg-gradient-to-r from-[#1A1A1A] via-[#2D1B69] to-[#1A1A1A] text-center">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -244,7 +244,7 @@ function AiSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-white text-4xl md:text-5xl font-extrabold mb-4 tracking-tight"
+          className="text-white text-3xl md:text-5xl font-extrabold mb-4 tracking-tight"
         >
           AI와 함께하는<br />마케팅의 미래
         </motion.h2>

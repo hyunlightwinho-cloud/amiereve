@@ -46,7 +46,7 @@ export default function MediaClient() {
                 className="group relative rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-lg transition-all duration-300"
                 onClick={() => openPortfolioLightbox(idx)}
               >
-                <div className="relative overflow-hidden bg-brand-light" style={{ height: 200 + (idx % 3) * 60 }}>
+                <div className="relative overflow-hidden bg-brand-light" style={{ height: Math.max(160, 200 + (idx % 3) * 60) }}>
                   <Image
                     src={item.src}
                     alt={item.alt}

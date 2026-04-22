@@ -45,7 +45,7 @@ function HeroSection() {
           }}
         />
       )}
-      <div className="relative z-10 container mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 container mx-auto px-5 sm:px-6 py-20 md:py-24 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -54,7 +54,7 @@ function HeroSection() {
           <span className="inline-block text-brand-yellow text-sm font-semibold tracking-widest uppercase mb-4">
             Our Story
           </span>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
             아미레브를<br />소개합니다
           </h1>
           <p className="mt-6 text-white/60 text-lg leading-relaxed">
@@ -110,7 +110,7 @@ const storyBlocks = [
 function BrandStorySection() {
   return (
     <section className="py-24 bg-white">
-      <div className="container mx-auto px-6 space-y-32">
+      <div className="container mx-auto px-5 sm:px-6 space-y-20 md:space-y-32">
         {storyBlocks.map((block, i) => (
           <div
             key={i}
@@ -160,7 +160,7 @@ function MissionVisionSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="bg-brand-dark text-white px-12 py-20 flex flex-col justify-center"
+        className="bg-brand-dark text-white px-6 md:px-12 py-14 md:py-20 flex flex-col justify-center"
       >
         <span className="text-brand-yellow text-sm font-semibold tracking-widest uppercase mb-4">Mission</span>
         <h3 className="text-3xl font-extrabold mb-6 tracking-tight">브랜드의 이야기를<br />세상에 전합니다</h3>
@@ -174,7 +174,7 @@ function MissionVisionSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.15 }}
-        className="bg-brand-yellow text-brand-dark px-12 py-20 flex flex-col justify-center"
+        className="bg-brand-yellow text-brand-dark px-6 md:px-12 py-14 md:py-20 flex flex-col justify-center"
       >
         <span className="text-brand-dark/60 text-sm font-semibold tracking-widest uppercase mb-4">Vision</span>
         <h3 className="text-3xl font-extrabold mb-6 tracking-tight">AI로 진화하는<br />마케팅의 미래</h3>
@@ -197,7 +197,7 @@ const milestones = [
 function TimelineSection() {
   return (
     <section className="py-24 bg-brand-light">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-5 sm:px-6">
         <SectionTitle title="아미레브 연혁" subtitle="작은 시작에서 큰 꿈으로" />
 
         <div className="relative mt-16">
@@ -270,7 +270,7 @@ function TimelineSection() {
 function TeamSection() {
   return (
     <section className="py-24 bg-white">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-5 sm:px-6">
         <SectionTitle title="팀 소개" subtitle="아미레브를 이끄는 사람들" />
 
         <div className="flex justify-center mt-4">

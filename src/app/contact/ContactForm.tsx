@@ -177,7 +177,7 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-16">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12 md:py-16 overflow-x-hidden">
       <StepIndicator current={step} />
 
       <AnimatePresence mode="wait">
@@ -241,7 +241,7 @@ export default function ContactForm() {
             <h2 className="text-xl font-bold text-brand-dark mb-6">
               상담 일정을 선택해주세요
             </h2>
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-center mb-6 overflow-x-auto">
               <DayPicker
                 mode="single"
                 selected={formData.date}
@@ -262,7 +262,7 @@ export default function ContactForm() {
                 <p className="text-sm font-semibold text-brand-dark mb-3">
                   시간 선택
                 </p>
-                <div className="grid grid-cols-4 gap-3 mb-6">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
                   {TIME_SLOTS.map((t) => {
                     const booked = bookedTimes.includes(t)
                     const selected = formData.time === t

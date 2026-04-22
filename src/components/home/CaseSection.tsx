@@ -8,7 +8,7 @@ import { ExternalLink } from 'lucide-react'
 
 export default function CaseSection() {
   return (
-    <section className="py-24 bg-brand-dark">
+    <section className="py-16 md:py-24 bg-brand-dark">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <SectionTitle title="성장한 고객 사례" light />
 
@@ -45,10 +45,10 @@ export default function CaseSection() {
               16년 차 전문 약사이자 강사. 약사 가르치는 1타강사 채널의 콘텐츠 기획부터 업로드까지 운영대행을 진행하고 있습니다.
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/cases"
-                className="inline-flex items-center gap-2 border-2 border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-brand-dark transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-brand-dark transition-all duration-200"
               >
                 사례 전체 보기 →
               </Link>
@@ -56,7 +56,7 @@ export default function CaseSection() {
                 href="https://www.youtube.com/@yak_up_mina"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 border-2 border-white/30 text-white/60 font-semibold px-6 py-3 rounded-full hover:border-white/60 hover:text-white transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white/60 font-semibold px-6 py-3 rounded-full hover:border-white/60 hover:text-white transition-all duration-200"
               >
                 채널 보기 <ExternalLink size={14} />
               </a>

@@ -10,16 +10,16 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main>
-      <section className="py-24 text-center bg-brand-dark">
+      <section className="py-16 md:py-24 text-center bg-brand-dark">
         <div className="max-w-3xl mx-auto px-6">
-          <h1 className="text-white font-extrabold text-4xl md:text-5xl mb-4 tracking-tight">
+          <h1 className="text-white font-extrabold text-3xl md:text-5xl mb-4 tracking-tight">
             함께 성장할 준비가 되셨나요?
           </h1>
           <p className="mb-10 text-base text-white/70">
             아래 양식을 작성하시면 24시간 내 연락드립니다
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl mx-auto">
             <div className="flex items-center gap-3 bg-white/8 border border-white/12 rounded-2xl px-6 py-4 shadow-lg shadow-black/20 backdrop-blur-sm">
               <div className="w-9 h-9 rounded-xl bg-brand-yellow/15 flex items-center justify-center shrink-0">
                 <Mail size={17} className="text-brand-yellow" />
