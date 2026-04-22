@@ -8,34 +8,38 @@ import team from '@/data/team'
 function HeroSection() {
   return (
     <section className="relative min-h-screen bg-brand-dark flex items-center overflow-hidden">
-      <div className="absolute inset-0">
-        <Image
-          src="/images/about/about-hero.jpg"
-          alt="반경화 대표"
-          fill
-          priority
-          className="object-cover object-top opacity-40"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-brand-dark/60 to-transparent" />
-      </div>
-
-      <div className="relative z-10 container mx-auto px-6 py-24 max-w-7xl">
+      <div className="relative z-10 container mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="max-w-xl"
         >
           <span className="inline-block text-brand-yellow text-sm font-semibold tracking-widest uppercase mb-4">
             Our Story
           </span>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
             아미레브를<br />소개합니다
           </h1>
           <p className="mt-6 text-white/60 text-lg leading-relaxed">
             브랜드의 이야기를 세상에 전하는 마케팅 파트너,<br />아미레브와 함께 성장하세요.
           </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          className="relative rounded-xl w-full aspect-[4/3] overflow-hidden ring-1 ring-white/10"
+        >
+          <Image
+            src="/images/about/about-hero.jpg"
+            alt="반경화 대표"
+            fill
+            priority
+            className="object-cover object-top"
+            sizes="(max-width:768px) 100vw, 50vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
         </motion.div>
       </div>
     </section>
