@@ -20,8 +20,8 @@ export default function ContactPage() {
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl mx-auto">
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl px-6 py-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border-t-4 border-brand-yellow">
-              <div className="w-11 h-11 rounded-xl bg-brand-yellow/15 flex items-center justify-center">
+            <div className="flex flex-col items-center gap-3 bg-white px-6 py-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border-t-4 border-brand-yellow">
+              <div className="w-11 h-11 bg-brand-yellow/15 flex items-center justify-center">
                 <Mail size={20} className="text-brand-dark" />
               </div>
               <div className="text-center">
@@ -29,8 +29,8 @@ export default function ContactPage() {
                 <p className="text-brand-dark text-sm font-bold leading-snug">amie-reve@naver.com</p>
               </div>
             </div>
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl px-6 py-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border-t-4 border-brand-yellow">
-              <div className="w-11 h-11 rounded-xl bg-brand-yellow/15 flex items-center justify-center">
+            <div className="flex flex-col items-center gap-3 bg-white px-6 py-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border-t-4 border-brand-yellow">
+              <div className="w-11 h-11 bg-brand-yellow/15 flex items-center justify-center">
                 <MessageCircle size={20} className="text-brand-dark" />
               </div>
               <div className="text-center">
@@ -38,8 +38,8 @@ export default function ContactPage() {
                 <p className="text-brand-dark text-sm font-bold leading-snug">카카오 채널 문의</p>
               </div>
             </div>
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl px-6 py-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border-t-4 border-brand-yellow">
-              <div className="w-11 h-11 rounded-xl bg-brand-yellow/15 flex items-center justify-center">
+            <div className="flex flex-col items-center gap-3 bg-white px-6 py-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border-t-4 border-brand-yellow">
+              <div className="w-11 h-11 bg-brand-yellow/15 flex items-center justify-center">
                 <Clock size={20} className="text-brand-dark" />
               </div>
               <div className="text-center">
