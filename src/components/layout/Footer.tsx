@@ -82,7 +82,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div className="text-white/40 text-[11px] leading-relaxed space-y-1">
+          <div className="text-white/40 text-xs md:text-[11px] leading-relaxed space-y-1">
             <p>상호: 아미레브(Amie Reve) | 대표자: 반경화 | 사업자등록번호: 869-74-00415</p>
             <p>업종: 서비스업(광고대행) · 정보통신업(미디어콘텐츠창작업)</p>
           </div>

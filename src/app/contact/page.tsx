@@ -20,31 +20,31 @@ export default function ContactPage() {
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl mx-auto">
-            <div className="flex flex-col items-center gap-3 bg-white px-6 py-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border-t-4 border-brand-yellow">
-              <div className="w-11 h-11 bg-brand-yellow/15 flex items-center justify-center">
-                <Mail size={20} className="text-brand-dark" />
+            <div className="flex flex-col items-center gap-4 bg-[#1E1E2E] px-8 py-8 rounded-2xl hover:-translate-y-2 hover:shadow-[0_20px_48px_rgba(0,0,0,0.5)] active:scale-95 transition-all duration-300 cursor-default">
+              <div className="w-12 h-12 bg-[#2A2A3E] flex items-center justify-center rounded-xl">
+                <Mail size={22} className="text-brand-yellow" />
               </div>
               <div className="text-center">
-                <p className="text-brand-gray text-[10px] font-bold tracking-widest uppercase mb-1">Email</p>
-                <p className="text-brand-dark text-sm font-bold leading-snug">amie-reve@naver.com</p>
+                <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase mb-1.5">Email</p>
+                <p className="text-white text-sm font-bold leading-snug">amie-reve@naver.com</p>
               </div>
             </div>
-            <div className="flex flex-col items-center gap-3 bg-white px-6 py-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border-t-4 border-brand-yellow">
-              <div className="w-11 h-11 bg-brand-yellow/15 flex items-center justify-center">
-                <MessageCircle size={20} className="text-brand-dark" />
+            <div className="flex flex-col items-center gap-4 bg-[#1E1E2E] px-8 py-8 rounded-2xl hover:-translate-y-2 hover:shadow-[0_20px_48px_rgba(0,0,0,0.5)] active:scale-95 transition-all duration-300 cursor-default">
+              <div className="w-12 h-12 bg-[#2A2A3E] flex items-center justify-center rounded-xl">
+                <MessageCircle size={22} className="text-brand-yellow" />
               </div>
               <div className="text-center">
-                <p className="text-brand-gray text-[10px] font-bold tracking-widest uppercase mb-1">Kakao</p>
-                <p className="text-brand-dark text-sm font-bold leading-snug">카카오 채널 문의</p>
+                <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase mb-1.5">Kakao</p>
+                <p className="text-white text-sm font-bold leading-snug">카카오 채널로 문의</p>
               </div>
             </div>
-            <div className="flex flex-col items-center gap-3 bg-white px-6 py-6 shadow-[0_8px_32px_rgba(0,0,0,0.35)] border-t-4 border-brand-yellow">
-              <div className="w-11 h-11 bg-brand-yellow/15 flex items-center justify-center">
-                <Clock size={20} className="text-brand-dark" />
+            <div className="flex flex-col items-center gap-4 bg-[#1E1E2E] px-8 py-8 rounded-2xl hover:-translate-y-2 hover:shadow-[0_20px_48px_rgba(0,0,0,0.5)] active:scale-95 transition-all duration-300 cursor-default">
+              <div className="w-12 h-12 bg-[#2A2A3E] flex items-center justify-center rounded-xl">
+                <Clock size={22} className="text-brand-yellow" />
               </div>
               <div className="text-center">
-                <p className="text-brand-gray text-[10px] font-bold tracking-widest uppercase mb-1">Hours</p>
-                <p className="text-brand-dark text-sm font-bold leading-snug">평일 09:00 ~ 18:00</p>
+                <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase mb-1.5">Hours</p>
+                <p className="text-white text-sm font-bold leading-snug">평일 09:00 ~ 18:00</p>
               </div>
             </div>
           </div>

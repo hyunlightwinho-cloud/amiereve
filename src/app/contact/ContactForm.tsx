@@ -7,24 +7,24 @@ import { z } from 'zod'
 import { DayPicker } from 'react-day-picker'
 import { format } from 'date-fns'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Loader2, Check } from 'lucide-react'
+import { Loader2, Check, AlertCircle } from 'lucide-react'
 import 'react-day-picker/dist/style.css'
 
 // ─── Zod schema ───────────────────────────────────────────────────────────────
 const schema = z.object({
-  name: z.string().min(2, '이름을 입력해주세요'),
+  name: z.string().min(2, '이름을 2자 이상 입력해주세요'),
   phone: z
     .string()
-    .regex(/^01[0-9]-?\d{3,4}-?\d{4}$/, '올바른 연락처 형식'),
-  email: z.string().email('올바른 이메일 주소'),
+    .regex(/^01[0-9]-?\d{3,4}-?\d{4}$/, '올바른 연락처 형식을 입력해주세요 (예: 010-1234-5678)'),
+  email: z.string().email('올바른 이메일 주소를 입력해주세요'),
   message: z.string().min(10, '최소 10자 이상 입력해주세요'),
-  privacy: z.boolean().refine((v) => v === true, '동의가 필요합니다'),
+  privacy: z.boolean().refine((v) => v === true, '개인정보 수집 및 이용에 동의해주세요'),
 })
 type FormValues = z.infer<typeof schema>
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const SERVICE_LIST = [
-  '인플루언서·유튜버 브랜딩',
+  '인플루언서·유튜브 브랜딩',
   '소상공인 SNS 교육',
   '광고대행',
   'AI 마케팅 서비스',
@@ -32,7 +32,7 @@ const SERVICE_LIST = [
   '기타 상담',
 ]
 
-const TIME_SLOTS = ['09:00', '11:00', '14:00', '16:00']
+const TIME_SLOTS = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00']
 
 const DISABLED_DAYS = [
   { before: new Date() },
@@ -53,7 +53,7 @@ function StepIndicator({ current }: { current: number }) {
             <div className="flex flex-col items-center gap-1">
               <div
                 className={[
-                  'w-9 h-9 flex items-center justify-center text-sm font-bold border-2 transition-all duration-300',
+                  'w-9 h-9 flex items-center justify-center text-sm font-bold border-2 transition-all duration-300 rounded-lg',
                   done
                     ? 'bg-brand-yellow border-brand-yellow text-brand-dark'
                     : active
@@ -73,7 +73,7 @@ function StepIndicator({ current }: { current: number }) {
               </span>
             </div>
             {i < steps.length - 1 && (
-              <div className="w-16 h-0.5 mb-5 mx-1 bg-brand-border relative overflow-hidden">
+              <div className="w-10 sm:w-16 h-0.5 mb-5 mx-1 bg-brand-border relative overflow-hidden">
                 <motion.div
                   className="absolute inset-y-0 left-0 bg-brand-yellow"
                   initial={{ width: 0 }}
@@ -100,6 +100,8 @@ export default function ContactForm() {
   const [bookedTimes, setBookedTimes] = useState<string[]>([])
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [step2Error, setStep2Error] = useState<string | null>(null)
 
   const {
     register,
@@ -129,22 +131,44 @@ export default function ContactForm() {
         : [...prev.services, s],
     }))
 
+  // ── Step 2: 다음으로 진행 ─────────────────────────────────────────────────
+  const handleStep2Next = () => {
+    if (!formData.date) {
+      setStep2Error('날짜를 선택해주세요')
+      return
+    }
+    if (!formData.time) {
+      setStep2Error('시간을 선택해주세요')
+      return
+    }
+    setStep2Error(null)
+    setStep(3)
+  }
+
   // ── Step 3: 제출 ─────────────────────────────────────────────────────────
   const onSubmit = async (values: FormValues) => {
     setSubmitting(true)
+    setSubmitError(null)
     try {
       const payload = {
         ...values,
-        service: formData.services,
-        scheduledDate: formData.date ? format(formData.date, 'yyyy-MM-dd') : undefined,
-        scheduledTime: formData.time || undefined,
+        service_type: formData.services,
+        date: formData.date ? format(formData.date, 'yyyy-MM-dd') : undefined,
+        time: formData.time || undefined,
       }
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
-      if (res.ok) setSubmitted(true)
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        const data = await res.json().catch(() => ({}))
+        setSubmitError(data?.error ?? '전송에 실패했습니다. 잠시 후 다시 시도해주세요.')
+      }
+    } catch {
+      setSubmitError('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.')
     } finally {
       setSubmitting(false)
     }
@@ -168,7 +192,7 @@ export default function ContactForm() {
         <p className="text-brand-gray mb-8">24시간 내 연락드리겠습니다.</p>
         <a
           href="/"
-          className="inline-flex items-center justify-center px-8 py-3 bg-brand-dark text-white font-semibold hover:bg-brand-yellow hover:text-brand-dark transition-all duration-250"
+          className="inline-flex items-center justify-center px-8 py-3 bg-brand-dark text-white font-semibold hover:bg-brand-yellow hover:text-brand-dark transition-all duration-250 rounded"
         >
           홈으로 돌아가기
         </a>
@@ -197,35 +221,41 @@ export default function ContactForm() {
               {SERVICE_LIST.map((s) => {
                 const selected = formData.services.includes(s)
                 return (
-                  <button
+                  <motion.button
                     key={s}
                     type="button"
                     onClick={() => toggleService(s)}
+                    whileHover={{ y: -3, scale: 1.03 }}
+                    whileTap={{ scale: 0.94 }}
+                    transition={{ duration: 0.15, ease: 'easeOut' }}
                     className={[
-                      'px-4 py-2 text-sm font-medium border transition-all duration-200 cursor-pointer',
+                      'px-4 py-3 text-sm font-medium border transition-colors duration-200 cursor-pointer rounded-full',
                       selected
-                        ? 'bg-brand-dark text-white border-brand-dark'
-                        : 'bg-white text-brand-dark border-brand-border hover:border-brand-dark',
+                        ? 'bg-brand-dark text-white border-brand-dark shadow-lg'
+                        : 'bg-white text-brand-dark border-brand-border hover:border-brand-dark hover:shadow-md',
                     ].join(' ')}
                   >
                     {s}
-                  </button>
+                  </motion.button>
                 )
               })}
             </div>
-            <button
+            <motion.button
               type="button"
               disabled={formData.services.length === 0}
               onClick={() => setStep(2)}
+              whileTap={formData.services.length > 0 ? { scale: 0.97 } : {}}
+              whileHover={formData.services.length > 0 ? { y: -2 } : {}}
+              transition={{ duration: 0.15 }}
               className={[
-                'w-full py-3 font-semibold transition-all duration-200',
+                'w-full py-4 font-semibold transition-all duration-200 rounded-full',
                 formData.services.length > 0
                   ? 'bg-brand-dark text-white hover:bg-brand-yellow hover:text-brand-dark cursor-pointer'
                   : 'bg-brand-border text-brand-gray cursor-not-allowed',
               ].join(' ')}
             >
               다음
-            </button>
+            </motion.button>
           </motion.div>
         )}
 
@@ -245,9 +275,10 @@ export default function ContactForm() {
               <DayPicker
                 mode="single"
                 selected={formData.date}
-                onSelect={(d) =>
-                  setFormData((prev) => ({ ...prev, date: d, time: '' }))
-                }
+                onSelect={(d) => {
+                  setFormData((prev) => ({ ...prev, date: d ?? undefined, time: '' }))
+                  setStep2Error(null)
+                }}
                 disabled={DISABLED_DAYS}
                 fromMonth={new Date()}
               />
@@ -267,42 +298,53 @@ export default function ContactForm() {
                     const booked = bookedTimes.includes(t)
                     const selected = formData.time === t
                     return (
-                      <button
+                      <motion.button
                         key={t}
                         type="button"
                         disabled={booked}
-                        onClick={() =>
+                        onClick={() => {
                           setFormData((prev) => ({ ...prev, time: t }))
-                        }
+                          setStep2Error(null)
+                        }}
+                        whileHover={booked ? {} : { y: -2, scale: 1.04 }}
+                        whileTap={booked ? {} : { scale: 0.93 }}
+                        transition={{ duration: 0.15, ease: 'easeOut' }}
                         className={[
-                          'py-2 text-sm font-medium border transition-all duration-200',
+                          'py-3 text-sm font-medium border transition-colors duration-200 rounded-xl',
                           booked
                             ? 'bg-brand-light text-brand-gray border-brand-border cursor-not-allowed line-through'
                             : selected
-                            ? 'bg-brand-dark text-white border-brand-dark cursor-pointer'
-                            : 'bg-white text-brand-dark border-brand-border hover:border-brand-dark cursor-pointer',
+                            ? 'bg-brand-dark text-white border-brand-dark cursor-pointer shadow-lg'
+                            : 'bg-white text-brand-dark border-brand-border hover:border-brand-dark hover:shadow-md cursor-pointer',
                         ].join(' ')}
                       >
                         {t}
-                      </button>
+                      </motion.button>
                     )
                   })}
                 </div>
               </motion.div>
             )}
 
+            {step2Error && (
+              <p className="flex items-center gap-1.5 text-sm text-red-500 mb-4">
+                <AlertCircle size={14} />
+                {step2Error}
+              </p>
+            )}
+
             <div className="flex gap-3">
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="flex-1 py-3 border border-brand-border text-brand-dark font-semibold hover:bg-brand-light transition-all duration-200 cursor-pointer"
+                className="flex-1 py-4 border border-brand-border text-brand-dark font-semibold hover:bg-brand-light transition-all duration-200 cursor-pointer rounded-full"
               >
                 이전
               </button>
               <button
                 type="button"
-                onClick={() => setStep(3)}
-                className="flex-1 py-3 bg-brand-dark text-white font-semibold hover:bg-brand-yellow hover:text-brand-dark transition-all duration-200 cursor-pointer"
+                onClick={handleStep2Next}
+                className="flex-1 py-4 bg-brand-dark text-white font-semibold hover:bg-brand-yellow hover:text-brand-dark transition-all duration-200 cursor-pointer rounded-full"
               >
                 다음
               </button>
@@ -333,7 +375,7 @@ export default function ContactForm() {
                     {...register('name')}
                     placeholder="홍길동"
                     className={[
-                      'w-full px-4 py-3 border text-sm outline-none transition-colors',
+                      'w-full px-4 py-3 border text-sm outline-none transition-colors rounded',
                       errors.name
                         ? 'border-red-400 focus:border-red-500'
                         : 'border-brand-border focus:border-brand-dark',
@@ -353,7 +395,7 @@ export default function ContactForm() {
                     {...register('phone')}
                     placeholder="010-1234-5678"
                     className={[
-                      'w-full px-4 py-3 border text-sm outline-none transition-colors',
+                      'w-full px-4 py-3 border text-sm outline-none transition-colors rounded',
                       errors.phone
                         ? 'border-red-400 focus:border-red-500'
                         : 'border-brand-border focus:border-brand-dark',
@@ -374,7 +416,7 @@ export default function ContactForm() {
                     type="email"
                     placeholder="example@email.com"
                     className={[
-                      'w-full px-4 py-3 border text-sm outline-none transition-colors',
+                      'w-full px-4 py-3 border text-sm outline-none transition-colors rounded',
                       errors.email
                         ? 'border-red-400 focus:border-red-500'
                         : 'border-brand-border focus:border-brand-dark',
@@ -395,7 +437,7 @@ export default function ContactForm() {
                     rows={4}
                     placeholder="궁금하신 내용을 자유롭게 작성해주세요 (최소 10자)"
                     className={[
-                      'w-full px-4 py-3 border text-sm outline-none transition-colors resize-none',
+                      'w-full px-4 py-3 border text-sm outline-none transition-colors resize-none rounded',
                       errors.message
                         ? 'border-red-400 focus:border-red-500'
                         : 'border-brand-border focus:border-brand-dark',
@@ -424,18 +466,26 @@ export default function ContactForm() {
                   )}
                 </div>
 
+                {/* 제출 오류 메시지 */}
+                {submitError && (
+                  <div className="flex items-center gap-2 px-4 py-3 bg-red-50 border border-red-200 rounded text-sm text-red-600">
+                    <AlertCircle size={16} className="shrink-0" />
+                    {submitError}
+                  </div>
+                )}
+
                 <div className="flex gap-3 mt-2">
                   <button
                     type="button"
                     onClick={() => setStep(2)}
-                    className="flex-1 py-3 border border-brand-border text-brand-dark font-semibold hover:bg-brand-light transition-all duration-200 cursor-pointer"
+                    className="flex-1 py-4 border border-brand-border text-brand-dark font-semibold hover:bg-brand-light transition-all duration-200 cursor-pointer rounded-full"
                   >
                     이전
                   </button>
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="flex-1 py-3 bg-brand-dark text-white font-semibold hover:bg-brand-yellow hover:text-brand-dark transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+                    className="flex-1 py-4 bg-brand-dark text-white font-semibold hover:bg-brand-yellow hover:text-brand-dark transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2 rounded"
                   >
                     {submitting && <Loader2 size={18} className="animate-spin" />}
                     {submitting ? '전송 중...' : '상담 신청하기'}

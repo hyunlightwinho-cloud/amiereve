@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 import Masonry from 'react-masonry-css'
@@ -10,11 +11,24 @@ import SectionTitle from '@/components/ui/SectionTitle'
 import Tag from '@/components/ui/Tag'
 import Button from '@/components/ui/Button'
 import portfolio, { type PortfolioItem } from '@/data/portfolio'
+import youtubeVideos from '@/data/youtubeVideos'
 
 const breakpointColumnsObj = {
   default: 3,
   1024: 2,
   640: 1,
+}
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08 },
+  },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45 } },
 }
 
 export default function MediaClient() {
@@ -28,7 +42,62 @@ export default function MediaClient() {
 
   return (
     <main>
-      {/* 포트폴리오 갤러리 (Masonry) */}
+
+      {/* ── YOUTUBE SECTION ── */}
+      <section className="py-20 bg-white border-b border-brand-border">
+        <div className="max-w-6xl mx-auto px-4">
+
+          {/* Section header */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-12"
+          >
+            <p className="text-brand-yellow text-xs tracking-[0.3em] uppercase font-bold mb-3">
+              YouTube
+            </p>
+            <h2 className="text-brand-dark text-3xl md:text-4xl font-extrabold tracking-tight">
+              유튜브 콘텐츠
+            </h2>
+          </motion.div>
+
+          {/* Single video embed */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="max-w-3xl"
+          >
+            <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-black" style={{ paddingTop: '56.25%' }}>
+              <iframe
+                src={`https://www.youtube.com/embed/${youtubeVideos[0].videoId}?rel=0&modestbranding=1&vq=hd1080`}
+                title={youtubeVideos[0].title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+            <div className="mt-4 flex items-center gap-3">
+              <span className="bg-brand-yellow text-brand-dark text-[10px] font-black tracking-wider uppercase px-2.5 py-1 rounded-full">
+                {youtubeVideos[0].category}
+              </span>
+              <a
+                href={`https://www.youtube.com/@yak_up_mina`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-brand-gray hover:text-brand-dark transition-colors"
+              >
+                @yak_up_mina 채널 바로가기 →
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── 포트폴리오 갤러리 (Masonry) ── */}
       <section className="py-20 bg-brand-light">
         <div className="max-w-6xl mx-auto px-4">
           <SectionTitle
@@ -61,7 +130,7 @@ export default function MediaClient() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* ── CTA ── */}
       <section className="py-16 bg-brand-yellow">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
@@ -78,7 +147,7 @@ export default function MediaClient() {
         </div>
       </section>
 
-      {/* Portfolio Lightbox */}
+      {/* ── Portfolio Lightbox ── */}
       {lightboxOpen && (
         <Lightbox
           open={lightboxOpen}
@@ -110,6 +179,7 @@ export default function MediaClient() {
           styles={{ container: { backgroundColor: 'rgba(0,0,0,0.9)' } }}
         />
       )}
+
     </main>
   )
 }

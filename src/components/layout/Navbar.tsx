@@ -77,7 +77,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="bg-brand-yellow text-brand-dark text-sm font-bold px-5 py-2 hover:bg-brand-yellow-dark transition-colors duration-200"
+              className="bg-brand-yellow text-brand-dark text-sm font-bold px-5 py-2 hover:bg-brand-yellow-dark transition-colors duration-200 rounded"
             >
               상담 예약
             </Link>
@@ -85,7 +85,7 @@ export default function Navbar() {
 
           {/* Mobile Hamburger */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2.5"
             onClick={() => setMenuOpen(true)}
             aria-label="메뉴 열기"
             style={{ color: isTransparent ? '#fff' : '#1A1A1A' }}
@@ -120,7 +120,7 @@ export default function Navbar() {
                   <span className="font-extrabold text-lg tracking-widest uppercase text-brand-dark">Amie Reve</span>
                   <span className="text-[10px] tracking-[0.2em] text-brand-gray">아미레브</span>
                 </div>
-                <button onClick={() => setMenuOpen(false)} aria-label="메뉴 닫기">
+                <button onClick={() => setMenuOpen(false)} aria-label="메뉴 닫기" className="p-2.5">
                   <X size={24} className="text-brand-dark" />
                 </button>
               </div>
@@ -134,7 +134,7 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      className="block py-3 px-4 text-brand-dark font-medium hover:bg-brand-light transition-colors"
+                      className="block py-4 px-4 text-brand-dark font-medium hover:bg-brand-light transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -144,7 +144,7 @@ export default function Navbar() {
               <div className="p-5">
                 <Link
                   href="/contact"
-                  className="block text-center bg-brand-yellow text-brand-dark font-bold py-3 hover:bg-brand-yellow-dark transition-colors"
+                  className="block text-center bg-brand-yellow text-brand-dark font-bold py-4 hover:bg-brand-yellow-dark transition-colors rounded"
                 >
                   상담 예약
                 </Link>

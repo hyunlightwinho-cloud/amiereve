@@ -18,7 +18,7 @@ export default function Button({
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center font-semibold transition-all duration-[250ms] cursor-pointer',
+        'inline-flex items-center justify-center font-semibold transition-all duration-[250ms] cursor-pointer rounded',
         {
           'bg-brand-dark text-white hover:bg-brand-yellow hover:text-brand-dark': variant === 'primary',
           'bg-brand-yellow text-brand-dark hover:bg-brand-yellow-dark': variant === 'secondary',
@@ -26,8 +26,8 @@ export default function Button({
           'text-brand-dark hover:bg-brand-light': variant === 'ghost',
         },
         {
-          'text-sm px-4 py-2': size === 'sm',
-          'text-base px-6 py-3': size === 'md',
+          'text-sm px-4 py-2.5': size === 'sm',
+          'text-base px-6 py-3.5': size === 'md',
           'text-lg px-8 py-4': size === 'lg',
         },
         className,

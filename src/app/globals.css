@@ -137,3 +137,41 @@ p, li, span {
 img {
   image-rendering: -webkit-optimize-contrast;
 }
+
+/* Gallery Marquee Slider */
+.gallery-marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.gallery-card {
+  position: relative;
+  height: 210px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.gallery-row:hover .gallery-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes gallery-scroll-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes gallery-scroll-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

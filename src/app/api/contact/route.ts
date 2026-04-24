@@ -4,33 +4,45 @@ import { supabase } from '@/lib/supabase'
 
 const schema = z.object({
   name: z.string().min(2),
-  phone: z.string(),
+  phone: z.string().regex(/^01[0-9]-?\d{3,4}-?\d{4}$/),
   email: z.string().email(),
-  service: z.array(z.string()),
-  scheduledDate: z.string().optional(),
-  scheduledTime: z.string().optional(),
+  service_type: z.array(z.string()),
+  date: z.string().optional(),
+  time: z.string().optional(),
   message: z.string().min(10),
   privacy: z.boolean(),
 })
 
 export async function POST(req: NextRequest) {
-  const body = await req.json()
+  let body: unknown
+  try {
+    body = await req.json()
+  } catch {
+    return NextResponse.json({ error: '잘못된 요청입니다' }, { status: 400 })
+  }
+
   const result = schema.safeParse(body)
-  if (!result.success) return NextResponse.json({ error: result.error }, { status: 400 })
+  if (!result.success) {
+    return NextResponse.json({ error: '입력값을 확인해주세요', details: result.error.flatten() }, { status: 400 })
+  }
 
   if (supabase) {
     const { error } = await supabase.from('reservations').insert({
+      service_type: result.data.service_type,
+      date: result.data.date ?? null,
+      time: result.data.time ?? null,
       name: result.data.name,
       phone: result.data.phone,
       email: result.data.email,
-      service: result.data.service,
-      scheduled_date: result.data.scheduledDate,
-      scheduled_time: result.data.scheduledTime,
       message: result.data.message,
+      created_at: new Date().toISOString(),
     })
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    if (error) {
+      console.error('[Contact] Supabase 오류:', error.message)
+      return NextResponse.json({ error: '예약 저장 중 오류가 발생했습니다' }, { status: 500 })
+    }
   } else {
-    console.log('[Contact] 예약 데이터:', result.data)
+    console.log('[Contact] 예약 데이터 (Supabase 미설정):', result.data)
   }
 
   return NextResponse.json({ success: true })
@@ -38,13 +50,31 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   const date = req.nextUrl.searchParams.get('date')
-  if (!date || !supabase) return NextResponse.json({ bookedTimes: [] })
+  if (!date) {
+    return NextResponse.json({ bookedTimes: [] })
+  }
 
-  const { data } = await supabase
-    .from('reservations')
-    .select('scheduled_time')
-    .eq('scheduled_date', date)
-    .eq('status', 'confirmed')
+  if (!supabase) {
+    return NextResponse.json({ bookedTimes: [] })
+  }
 
-  return NextResponse.json({ bookedTimes: data?.map((r: { scheduled_time: string }) => r.scheduled_time) ?? [] })
+  try {
+    const { data, error } = await supabase
+      .from('reservations')
+      .select('time')
+      .eq('date', date)
+
+    if (error) {
+      console.error('[Contact] GET 오류:', error.message)
+      return NextResponse.json({ bookedTimes: [] })
+    }
+
+    const bookedTimes = (data ?? [])
+      .map((r: { time: string | null }) => r.time)
+      .filter((t): t is string => t !== null)
+
+    return NextResponse.json({ bookedTimes })
+  } catch {
+    return NextResponse.json({ bookedTimes: [] })
+  }
 }
