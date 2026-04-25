@@ -20,7 +20,7 @@ function HeroSection() {
     <section className="relative bg-brand-dark overflow-hidden">
       <div className="h-1.5 w-full bg-brand-yellow" />
 
-      <div className="container mx-auto px-6 pt-28 pb-14 max-w-4xl">
+      <div className="container mx-auto px-6 pt-28 pb-14 max-w-4xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,7 +37,7 @@ function HeroSection() {
             광고대행부터 인플루언서 브랜딩, 소상공인 교육, AI 마케팅까지
             아미레브가 브랜드의 성장을 함께합니다.
           </p>
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex gap-3 flex-wrap justify-center">
             {anchorLinks.map((link) => (
               <Link
                 key={link.href}
