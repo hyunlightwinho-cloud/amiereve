@@ -5,7 +5,6 @@ const pages = [
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
   { href: '/cases', label: 'Cases' },
-  { href: '/media', label: 'Media' },
 ]
 
 const services = [
