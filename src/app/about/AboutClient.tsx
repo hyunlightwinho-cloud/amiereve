@@ -2,57 +2,12 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Flag, BookOpen, PlayCircle, Clock, Sparkles, ChevronDown } from 'lucide-react'
+import { Flag, BookOpen, PlayCircle, Clock, Sparkles } from 'lucide-react'
 import SectionTitle from '@/components/ui/SectionTitle'
 
 export default function AboutClient() {
   return (
     <main>
-
-      {/* ── 회사소개 배너 ── */}
-      <section className="relative min-h-screen bg-brand-dark flex items-center justify-center overflow-hidden">
-        <Image
-          src="/images/hero-bg.jpg"
-          alt="아미레브 배경"
-          fill
-          priority
-          className="object-cover opacity-30"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/60 via-brand-dark/40 to-brand-dark/80" />
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="relative z-10 text-center px-4 max-w-3xl mx-auto"
-        >
-          <p className="text-brand-yellow text-[11px] tracking-[0.45em] uppercase font-bold mb-6">
-            Company Introduction
-          </p>
-          <h1 className="text-white font-extrabold tracking-tight leading-[1.05] mb-4"
-            style={{ fontSize: 'clamp(3rem, 7vw, 5.5rem)' }}>
-            아미레브
-          </h1>
-          <p className="text-brand-yellow font-bold tracking-[0.3em] uppercase text-lg mb-8">
-            Amie Reve
-          </p>
-          <div className="w-10 h-0.5 bg-brand-yellow mx-auto mb-8" />
-          <p className="text-white/65 text-base md:text-lg leading-relaxed">
-            소상공인부터 인플루언서까지,<br />
-            모든 브랜드의 이야기를 세상에 전하는 마케팅 파트너입니다.
-          </p>
-        </motion.div>
-
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/30"
-        >
-          <ChevronDown size={18} />
-          <span className="text-[9px] tracking-[0.25em] uppercase">Scroll</span>
-        </motion.div>
-      </section>
 
       {/* ── CEO 인사말 ── */}
       <section className="py-20 bg-white">
@@ -62,8 +17,7 @@ export default function AboutClient() {
             {/* Left: CEO Photo */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: 'easeOut' }}
               className="relative w-full aspect-[3/4] overflow-hidden bg-brand-light max-w-sm mx-auto md:mx-0"
             >
@@ -71,6 +25,7 @@ export default function AboutClient() {
                 src="/images/about/about-hero.jpg"
                 alt="반경화 대표"
                 fill
+                priority
                 className="object-cover object-top"
                 sizes="(max-width:768px) 100vw, 40vw"
               />
@@ -84,8 +39,7 @@ export default function AboutClient() {
             {/* Right: CEO Message */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
             >
               <p className="text-brand-yellow text-xs tracking-[0.3em] uppercase font-bold mb-3">
