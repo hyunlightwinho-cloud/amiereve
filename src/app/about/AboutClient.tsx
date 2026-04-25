@@ -9,117 +9,114 @@ export default function AboutClient() {
   return (
     <main>
 
-      {/* ── 회사소개 히어로 배너 ── */}
-      <section className="relative min-h-screen bg-brand-dark overflow-hidden flex items-center">
+      {/* ── 회사소개 배너 ── */}
+      <section className="relative min-h-screen bg-brand-dark flex items-center justify-center overflow-hidden">
+        <Image
+          src="/images/hero-bg.jpg"
+          alt="아미레브 배경"
+          fill
+          priority
+          className="object-cover opacity-30"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/60 via-brand-dark/40 to-brand-dark/80" />
 
-        {/* Desktop: 2-column layout */}
-        <div className="hidden md:grid md:grid-cols-[1fr_1.1fr] w-full min-h-screen">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="relative z-10 text-center px-4 max-w-3xl mx-auto"
+        >
+          <p className="text-brand-yellow text-[11px] tracking-[0.45em] uppercase font-bold mb-6">
+            Company Introduction
+          </p>
+          <h1 className="text-white font-extrabold tracking-tight leading-[1.05] mb-4"
+            style={{ fontSize: 'clamp(3rem, 7vw, 5.5rem)' }}>
+            아미레브
+          </h1>
+          <p className="text-brand-yellow font-bold tracking-[0.3em] uppercase text-lg mb-8">
+            Amie Reve
+          </p>
+          <div className="w-10 h-0.5 bg-brand-yellow mx-auto mb-8" />
+          <p className="text-white/65 text-base md:text-lg leading-relaxed">
+            소상공인부터 인플루언서까지,<br />
+            모든 브랜드의 이야기를 세상에 전하는 마케팅 파트너입니다.
+          </p>
+        </motion.div>
 
-          {/* Left: Company intro */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: 'easeOut' }}
-            className="flex flex-col justify-center px-12 lg:px-20 py-28"
-          >
-            <p className="text-brand-yellow text-[11px] tracking-[0.45em] uppercase font-bold mb-8">
-              Company Introduction
-            </p>
-
-            <h1 className="text-white font-extrabold leading-[1.05] tracking-tight mb-2"
-              style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)' }}>
-              아미레브
-            </h1>
-            <h2 className="text-brand-yellow font-extrabold leading-none tracking-widest uppercase mb-8"
-              style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)' }}>
-              Amie Reve
-            </h2>
-
-            <div className="w-10 h-0.5 bg-brand-yellow mb-8" />
-
-            <p className="text-white/60 text-sm leading-relaxed mb-10 max-w-xs">
-              소상공인부터 인플루언서까지,<br />
-              모든 브랜드의 이야기를 세상에 전합니다.
-            </p>
-
-            {/* CEO 정보 */}
-            <div className="border-l-2 border-brand-yellow pl-6 mb-10">
-              <p className="text-white font-extrabold text-xl tracking-tight mb-0.5">반경화</p>
-              <p className="text-white/40 text-xs tracking-widest uppercase">대표 · CEO</p>
-            </div>
-
-            <p className="text-white/35 text-sm italic leading-relaxed">
-              "브랜드의 이야기를 세상에 전하는 것이<br />아미레브의 사명입니다."
-            </p>
-          </motion.div>
-
-          {/* Right: CEO photo — full height */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: 'easeOut', delay: 0.15 }}
-            className="relative"
-          >
-            <Image
-              src="/images/about/about-hero.jpg"
-              alt="반경화 대표"
-              fill
-              priority
-              className="object-cover object-top"
-              sizes="55vw"
-            />
-            {/* Subtle left-side gradient blend */}
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/60 via-transparent to-transparent" />
-          </motion.div>
-        </div>
-
-        {/* Mobile: full-bleed photo + text overlay */}
-        <div className="md:hidden relative w-full min-h-screen">
-          <Image
-            src="/images/about/about-hero.jpg"
-            alt="반경화 대표"
-            fill
-            priority
-            className="object-cover object-top"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/30" />
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-            className="absolute bottom-0 left-0 right-0 p-8 pb-20"
-          >
-            <p className="text-brand-yellow text-[10px] tracking-[0.4em] uppercase font-bold mb-4">
-              Company Introduction
-            </p>
-            <h1 className="text-white font-extrabold text-4xl tracking-tight leading-tight mb-1">
-              아미레브
-            </h1>
-            <h2 className="text-brand-yellow font-extrabold text-lg tracking-widest uppercase mb-5">
-              Amie Reve
-            </h2>
-            <div className="w-8 h-0.5 bg-brand-yellow mb-5" />
-            <div className="border-l-2 border-brand-yellow pl-4 mb-5">
-              <p className="text-white font-extrabold text-base mb-0.5">반경화</p>
-              <p className="text-white/50 text-xs tracking-widest uppercase">대표 · CEO</p>
-            </div>
-            <p className="text-white/50 text-xs italic leading-relaxed">
-              "브랜드의 이야기를 세상에 전하는 것이 아미레브의 사명입니다."
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Scroll indicator */}
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/30 z-10"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/30"
         >
           <ChevronDown size={18} />
           <span className="text-[9px] tracking-[0.25em] uppercase">Scroll</span>
         </motion.div>
+      </section>
+
+      {/* ── CEO 인사말 ── */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+
+            {/* Left: CEO Photo */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              className="relative w-full aspect-[3/4] overflow-hidden bg-brand-light max-w-sm mx-auto md:mx-0"
+            >
+              <Image
+                src="/images/about/about-hero.jpg"
+                alt="반경화 대표"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width:768px) 100vw, 40vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <p className="text-white font-extrabold text-lg leading-tight">반경화</p>
+                <p className="text-white/70 text-sm mt-0.5">대표 · 아미레브</p>
+              </div>
+            </motion.div>
+
+            {/* Right: CEO Message */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
+            >
+              <p className="text-brand-yellow text-xs tracking-[0.3em] uppercase font-bold mb-3">
+                CEO MESSAGE
+              </p>
+              <h2 className="text-brand-dark text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+                인사말
+              </h2>
+              <div className="w-10 h-0.5 bg-brand-yellow mb-8" />
+
+              <p className="text-brand-yellow font-bold text-base leading-relaxed mb-6">
+                "브랜드의 이야기를 세상에 전하는 것이 아미레브의 사명입니다."
+              </p>
+
+              <div className="space-y-4 text-brand-gray text-sm leading-relaxed">
+                <p>
+                  소상공인부터 인플루언서까지, 모든 브랜드에는 고유한 스토리가 있습니다. 그 이야기를 올바르게 전달할 때 비로소 브랜드가 고객의 마음에 자리잡게 됩니다.
+                </p>
+                <p>
+                  아미레브는 2022년 창립 이래 광고대행, 유튜브 운영대행, 소상공인 SNS 교육 등 다양한 분야에서 브랜드의 성장을 함께해왔습니다.
+                </p>
+                <p>
+                  앞으로도 AI 마케팅 서비스를 비롯한 차세대 솔루션으로 더 많은 분들에게 건강한 브랜드 성장을 전달하겠습니다.
+                </p>
+              </div>
+
+              <p className="mt-8 text-brand-dark font-bold text-sm">— 대표 반경화</p>
+            </motion.div>
+
+          </div>
+        </div>
       </section>
 
       {/* ── Mission / Vision ── */}
