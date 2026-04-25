@@ -18,59 +18,38 @@ const anchorLinks = [
 function HeroSection() {
   return (
     <section className="relative bg-brand-dark overflow-hidden">
-      {/* yellow top accent bar */}
       <div className="h-1.5 w-full bg-brand-yellow" />
 
-      <div className="container mx-auto px-6 py-24 md:py-36 max-w-5xl">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <span className="inline-block bg-brand-yellow text-brand-dark text-xs font-bold tracking-widest uppercase px-3 py-1 mb-6">
-              서비스
-            </span>
-            <h1 className="text-white text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6">
-              우리가 제공하는<br />
-              <span className="text-brand-yellow">전문 서비스</span>
-            </h1>
-            <p className="text-white/60 text-lg leading-relaxed mb-8">
-              광고대행부터 인플루언서 브랜딩, 소상공인 교육, AI 마케팅까지<br className="hidden sm:block" />
-              아미레브가 브랜드의 성장을 함께합니다.
-            </p>
-            <div className="flex gap-3 flex-wrap">
-              {anchorLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="px-4 py-2 border border-white/20 text-white/70 text-sm hover:border-brand-yellow hover:text-brand-yellow transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="hidden md:block relative h-80"
-          >
-            <Image
-              src="/images/gallery/photo-03.jpg"
-              alt="아미레브 서비스"
-              fill
-              className="object-cover"
-              sizes="50vw"
-              priority
-            />
-            <div className="absolute inset-0 bg-brand-dark/30" />
-          </motion.div>
-        </div>
+      <div className="container mx-auto px-6 py-24 md:py-36 max-w-4xl">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <span className="inline-block bg-brand-yellow text-brand-dark text-xs font-bold tracking-widest uppercase px-3 py-1 mb-6">
+            서비스
+          </span>
+          <h1 className="text-white text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight tracking-tight mb-6">
+            우리가 제공하는<br />
+            <span className="text-brand-yellow">전문 서비스</span>
+          </h1>
+          <p className="text-white/60 text-lg md:text-xl leading-relaxed mb-10 max-w-xl">
+            광고대행부터 인플루언서 브랜딩, 소상공인 교육, AI 마케팅까지
+            아미레브가 브랜드의 성장을 함께합니다.
+          </p>
+          <div className="flex gap-3 flex-wrap">
+            {anchorLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="px-4 py-2 border border-white/20 text-white/70 text-sm hover:border-brand-yellow hover:text-brand-yellow transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </motion.div>
       </div>
-
     </section>
   )
 }
@@ -101,25 +80,25 @@ function Service01Section() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="bg-brand-dark flex items-center px-6 py-10 md:px-10 md:py-16"
+        className="bg-brand-yellow flex items-center px-6 py-10 md:px-10 md:py-16"
       >
         <div className="max-w-md">
-          <span className="text-brand-yellow text-sm font-semibold tracking-widest lowercase">service 01</span>
-          <h2 className="text-white font-extrabold mt-3 mb-5 text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight">
+          <span className="text-brand-dark/60 text-sm font-semibold tracking-widest lowercase">service 01</span>
+          <h2 className="text-brand-dark font-extrabold mt-3 mb-5 text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight">
             광고대행 &<br />미디어 운영
           </h2>
-          <p className="text-white/70 leading-relaxed mb-6">
+          <p className="text-brand-dark/70 leading-relaxed mb-6">
             전략적인 SNS 광고와 미디어 운영으로 브랜드의 존재감을 키웁니다.
           </p>
           <ul className="space-y-2 mb-8">
             {service01Checks.map((item) => (
-              <li key={item} className="flex items-center gap-2 text-white/80">
-                <span className="text-brand-yellow font-bold">✓</span>
+              <li key={item} className="flex items-center gap-2 text-brand-dark/80">
+                <span className="text-brand-dark font-bold">✓</span>
                 {item}
               </li>
             ))}
           </ul>
-          <Link href="/contact"><Button variant="outline">문의하기</Button></Link>
+          <Link href="/contact"><Button variant="primary">문의하기</Button></Link>
         </div>
       </motion.div>
     </section>
@@ -148,34 +127,34 @@ function Service02Section() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="bg-brand-yellow flex items-center px-6 py-10 md:px-10 md:py-16 order-2 md:order-1"
+        className="bg-brand-dark flex items-center px-6 py-10 md:px-10 md:py-16 order-2 md:order-1"
       >
         <div className="max-w-md">
-          <span className="text-brand-dark/60 text-sm font-semibold tracking-widest lowercase">service 02</span>
-          <h2 className="text-brand-dark font-extrabold mt-3 mb-5 text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight">
+          <span className="text-brand-yellow text-sm font-semibold tracking-widest lowercase">service 02</span>
+          <h2 className="text-white font-extrabold mt-3 mb-5 text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight">
             인플루언서·유튜버<br />브랜딩
           </h2>
 
           <div className="flex gap-4 mb-6">
             {platformIcons.map(({ Icon, label }) => (
               <div key={label} className="flex flex-col items-center gap-1">
-                <div className="w-12 h-12 bg-brand-dark/10 flex items-center justify-center hover:bg-brand-dark/20 transition-colors">
-                  <Icon size={22} className="text-brand-dark" />
+                <div className="w-12 h-12 bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                  <Icon size={22} className="text-white" />
                 </div>
-                <span className="text-xs text-brand-dark/60">{label}</span>
+                <span className="text-xs text-white/60">{label}</span>
               </div>
             ))}
           </div>
 
           <ul className="space-y-2 mb-8">
             {service02Checks.map((item) => (
-              <li key={item} className="flex items-center gap-2 text-brand-dark/80">
-                <span className="text-brand-dark font-bold">✓</span>
+              <li key={item} className="flex items-center gap-2 text-white/80">
+                <span className="text-brand-yellow font-bold">✓</span>
                 {item}
               </li>
             ))}
           </ul>
-          <Link href="/contact"><Button variant="primary">문의하기</Button></Link>
+          <Link href="/contact"><Button variant="outline">문의하기</Button></Link>
         </div>
       </motion.div>
 
