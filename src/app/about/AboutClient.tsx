@@ -10,19 +10,18 @@ export default function AboutClient() {
     <main>
 
       {/* ── 회사소개 배너 ── */}
-      <section className="bg-brand-dark pt-28 pb-14">
+      <section className="bg-brand-dark pt-24 pb-8">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <p className="text-brand-yellow text-xs tracking-[0.35em] uppercase font-bold mb-4">ABOUT US</p>
-            <h1 className="text-white text-5xl md:text-6xl font-extrabold tracking-tight mb-5">회사소개</h1>
-            <div className="w-12 h-0.5 bg-brand-yellow mb-6" />
-            <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-lg">
-              브랜드의 이야기를 세상에 전하는<br className="hidden md:block" />
-              마케팅 에이전시, 아미레브입니다.
+            <p className="text-brand-yellow text-xs tracking-[0.35em] uppercase font-bold mb-3">ABOUT US</p>
+            <h1 className="text-white text-4xl md:text-5xl font-extrabold tracking-tight mb-4">회사소개</h1>
+            <div className="w-10 h-0.5 bg-brand-yellow mb-4" />
+            <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-lg">
+              브랜드의 이야기를 세상에 전하는 마케팅 에이전시, 아미레브입니다.
             </p>
           </motion.div>
         </div>
