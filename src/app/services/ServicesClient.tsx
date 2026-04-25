@@ -98,7 +98,7 @@ function Service01Section() {
               </li>
             ))}
           </ul>
-          <Link href="/contact"><Button variant="primary">문의하기</Button></Link>
+          <Link href="/contact"><Button variant="primary" className="hover:bg-white hover:text-brand-dark">문의하기</Button></Link>
         </div>
       </motion.div>
     </section>
