@@ -6,7 +6,7 @@ import { ArrowRight, MessageCircle } from 'lucide-react'
 
 export default function CTASection() {
   return (
-    <section className="pb-24 bg-brand-yellow relative overflow-hidden" style={{ paddingTop: 196 }}>
+    <section className="pb-24 bg-brand-yellow relative" style={{ paddingTop: 196 }}>
       {/* Decorative circles */}
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-black/5 pointer-events-none" />
       <div className="absolute -bottom-16 -left-16 w-60 h-60 rounded-full bg-black/5 pointer-events-none" />
