@@ -140,7 +140,8 @@ export default function CaseSection() {
       {/* Wave divider — dark case section → ReviewsSection (#F7F5F0) */}
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', lineHeight: 0, zIndex: 5 }}>
         <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 100 }}>
-          <path d="M0,50 C300,100 900,0 1200,50 L1200,100 L0,100 Z" fill="#F7F5F0"/>
+          <path d="M0,0 L1200,0 L1200,80 C900,60 300,100 0,80 Z" fill="#1A1A1A"/>
+          <path d="M0,80 C300,100 900,60 1200,80 L1200,100 L0,100 Z" fill="#F7F5F0"/>
         </svg>
       </div>
     </section>

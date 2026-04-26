@@ -12,7 +12,7 @@ const reviews = [
 
 export default function ReviewsSection() {
   return (
-    <section className="py-24 reviews-noise" style={{ backgroundColor: '#F7F5F0', backgroundImage: "url('/images/reviews/reviews-bg.jpg')", backgroundSize: 'cover', backgroundPosition: 'center top', position: 'relative' }}>
+    <section className="py-24 reviews-noise" style={{ backgroundColor: '#F7F5F0', backgroundImage: "linear-gradient(rgba(247,245,240,0.5), rgba(247,245,240,0.5)), url('/images/reviews/reviews-bg.jpg')", backgroundSize: 'cover', backgroundPosition: 'center top', position: 'relative' }}>
       <div className="reviews-content max-w-7xl mx-auto px-4 md:px-8">
         <SectionTitle title="고객들의 진짜 이야기" subtitle="수강생들이 직접 남겨준 솔직한 후기" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
