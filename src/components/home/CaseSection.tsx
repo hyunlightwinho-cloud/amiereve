@@ -15,7 +15,7 @@ const fadeUp = (delay = 0) => ({
 
 export default function CaseSection() {
   return (
-    <section className="py-16 md:py-24 bg-brand-dark overflow-hidden">
+    <section className="py-16 md:py-24 bg-brand-dark overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <SectionTitle title="고객 사례" light />
 
@@ -135,6 +135,13 @@ export default function CaseSection() {
             </motion.div>
           </motion.div>
         </div>
+      </div>
+
+      {/* Wave divider — dark case section → ReviewsSection (#F7F5F0) */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', lineHeight: 0, zIndex: 5 }}>
+        <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 100 }}>
+          <path d="M0,50 C300,100 900,0 1200,50 L1200,100 L0,100 Z" fill="#F7F5F0"/>
+        </svg>
       </div>
     </section>
   )

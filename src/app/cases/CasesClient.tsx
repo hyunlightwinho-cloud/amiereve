@@ -1,35 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ExternalLink, Users, PlaySquare, TrendingUp, ArrowRight, Clock } from 'lucide-react'
 
-function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true })
-
-  useEffect(() => {
-    if (!inView) return
-    let current = 0
-    const duration = 1200
-    const step = 16
-    const increment = target / (duration / step)
-    const timer = setInterval(() => {
-      current += increment
-      if (current >= target) {
-        setCount(target)
-        clearInterval(timer)
-      } else {
-        setCount(Math.floor(current))
-      }
-    }, step)
-    return () => clearInterval(timer)
-  }, [inView, target])
-
-  return <span ref={ref}>{count.toLocaleString()}{suffix}</span>
-}
 
 export default function CasesClient() {
   return (
@@ -39,62 +13,57 @@ export default function CasesClient() {
       <section className="relative bg-white overflow-hidden border-b border-brand-border">
         <div className="absolute top-0 left-0 w-full h-1 bg-brand-yellow" />
 
-        <div className="max-w-6xl mx-auto px-5 sm:px-6 pt-24 pb-20 md:pt-32 md:pb-28">
+        <div className="max-w-4xl mx-auto px-5 sm:px-6 pt-20 pb-12 md:pt-24 md:pb-16 text-center">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-brand-yellow text-xs tracking-[0.3em] uppercase font-bold mb-8"
+            className="text-brand-yellow text-xs tracking-[0.3em] uppercase font-bold mb-6"
           >
             Cases
           </motion.p>
 
-          <div className="grid md:grid-cols-2 gap-14 md:gap-20 items-end">
-            {/* Left: headline */}
-            <motion.div
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-            >
-              <h1 className="text-brand-dark text-5xl sm:text-6xl md:text-[5rem] font-extrabold leading-[1.05] tracking-tight mb-6">
-                고객과<br />함께 만든<br />
-                <span className="relative inline-block">
-                  결과
-                  <span className="absolute left-0 bottom-1 w-full h-3 bg-brand-yellow/30 -z-10" />
-                </span>
-              </h1>
-              <p className="text-brand-gray text-lg leading-relaxed max-w-sm">
-                실제 협업을 통해 검증된 성장 스토리.<br />숫자로 증명합니다.
-              </p>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            <h1 className="text-brand-dark text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight mb-4">
+              고객과 함께 만든{' '}
+              <span className="relative inline-block">
+                결과
+                <span className="absolute left-0 bottom-1 w-full h-3 bg-brand-yellow/30 -z-10" />
+              </span>
+            </h1>
+            <p className="text-brand-gray text-base md:text-lg leading-relaxed mb-10">
+              실제 협업을 통해 검증된 성장 스토리. 숫자로 증명합니다.
+            </p>
+          </motion.div>
 
-            {/* Right: stat table */}
-            <motion.div
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.25 }}
-              className="border border-brand-border divide-y divide-brand-border"
-            >
-              {[
-                { label: '달성 구독자 수', value: 2170, suffix: '명+' },
-                { label: '제작 완료 영상', value: 144, suffix: '개+' },
-                { label: '운영 중인 채널', value: 1, suffix: '개' },
-              ].map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.35 + i * 0.1 }}
-                  className="flex items-center justify-between px-7 py-6 group hover:bg-brand-light transition-colors duration-200"
-                >
-                  <span className="text-brand-gray text-sm font-medium">{stat.label}</span>
-                  <span className="text-brand-dark text-3xl md:text-4xl font-extrabold tabular-nums">
-                    <CountUp target={stat.value} /><span className="text-brand-yellow">{stat.suffix}</span>
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+          {/* Stat row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="flex flex-col sm:flex-row justify-center divide-y sm:divide-y-0 sm:divide-x divide-brand-border border border-brand-border"
+          >
+            {[
+              { label: '달성 구독자 수' },
+              { label: '제작 완료 영상' },
+              { label: '운영 중인 채널' },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.35 + i * 0.1 }}
+                className="flex-1 px-8 py-6 hover:bg-brand-light transition-colors duration-200"
+              >
+                <div className="text-brand-gray text-2xl md:text-3xl font-bold mb-1">추가 예정</div>
+                <div className="text-brand-gray text-sm font-medium">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -178,8 +147,8 @@ export default function CasesClient() {
 
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { Icon: Users, label: '구독자', node: <CountUp target={2170} suffix="명" /> },
-                  { Icon: PlaySquare, label: '업로드 영상', node: <CountUp target={144} suffix="개" /> },
+                  { Icon: Users, label: '구독자', node: <span>추가 예정</span> },
+                  { Icon: PlaySquare, label: '업로드 영상', node: <span>추가 예정</span> },
                   { Icon: TrendingUp, label: '운영 시작', node: <span>2024~</span> },
                 ].map(({ Icon, label, node }) => (
                   <div

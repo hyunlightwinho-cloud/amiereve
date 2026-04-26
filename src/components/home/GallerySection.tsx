@@ -18,7 +18,11 @@ export default function GallerySection() {
   const slides = galleryImages.map((img) => ({ src: img.src, alt: img.alt }))
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="pb-24 overflow-hidden" style={{
+      background: 'linear-gradient(to bottom, #FEF9E7 0%, #FDFAF3 180px, #FDFAF3 calc(100% - 80px), #FEF9E7 100%)',
+      position: 'relative',
+      paddingTop: 196,
+    }}>
       <motion.div
         className="max-w-7xl mx-auto px-4 md:px-8 mb-14"
         initial={{ opacity: 0, y: 20 }}
@@ -97,6 +101,13 @@ export default function GallerySection() {
         index={lightboxIndex}
         slides={slides}
       />
+
+      {/* Wave divider — GallerySection → CaseSection (#1A1A1A) */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', lineHeight: 0, zIndex: 5 }}>
+        <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 100 }}>
+          <path d="M0,50 C300,100 900,0 1200,50 L1200,100 L0,100 Z" fill="#1A1A1A"/>
+        </svg>
+      </div>
     </section>
   )
 }

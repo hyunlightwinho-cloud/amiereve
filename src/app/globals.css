@@ -175,3 +175,19 @@ img {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Reviews section noise texture overlay */
+.reviews-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 3;
+}
+.reviews-noise > .reviews-content {
+  position: relative;
+  z-index: 4;
+}

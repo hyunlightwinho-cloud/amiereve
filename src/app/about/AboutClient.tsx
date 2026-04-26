@@ -68,8 +68,8 @@ export default function AboutClient() {
               </h2>
               <div className="w-10 h-0.5 bg-brand-yellow mb-8" />
 
-              <p className="text-brand-yellow font-bold text-base leading-relaxed mb-6">
-                "브랜드의 이야기를 세상에 전하는 것이 아미레브의 사명입니다."
+              <p className="font-bold text-base leading-relaxed mb-6">
+                <mark className="bg-brand-yellow text-brand-dark px-1">"브랜드의 이야기를 세상에 전하는 것이 아미레브의 사명입니다."</mark>
               </p>
 
               <div className="space-y-4 text-brand-gray text-sm leading-relaxed">

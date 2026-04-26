@@ -1,8 +1,9 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Chip {
   label: string;
@@ -409,30 +410,125 @@ const services: ServiceItem[] = [
     floatDuration: 3.8,
     phoneMockup: <AiPhone />,
     badge: (
-      <span
-        style={{
-          display: 'inline-block',
-          marginLeft: 8,
-          background: '#6C3FC5',
-          color: 'white',
-          fontSize: 10,
-          fontWeight: 700,
-          padding: '2px 10px',
-          borderRadius: 100,
-          verticalAlign: 'middle',
-          animation: 'pulse 2s ease-in-out infinite',
-        }}
-      >
+      <span style={{
+        display: 'inline-block', marginLeft: 8,
+        background: '#6C3FC5', color: 'white',
+        fontSize: 10, fontWeight: 700, padding: '2px 10px',
+        borderRadius: 100, verticalAlign: 'middle',
+        animation: 'pulse 2s ease-in-out infinite',
+      }}>
         NEW 2026
       </span>
     ),
   },
 ];
 
-export default function ServiceZigzag() {
+const TOTAL_PAGES = 2;
+const TOTAL_SLIDES = services.length;
+
+const slideVariants = {
+  enter: (d: number) => ({ x: d > 0 ? '55%' : '-55%', opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit: (d: number) => ({ x: d > 0 ? '-55%' : '55%', opacity: 0 }),
+};
+
+/* ─── Helper components ─── */
+
+function NavArrow({
+  direction, onClick, disabled, small,
+}: {
+  direction: 'left' | 'right';
+  onClick: () => void;
+  disabled: boolean;
+  small?: boolean;
+}) {
+  const size = small ? 38 : 46;
+  const iconSize = small ? 16 : 19;
   return (
-    <section style={{ background: '#F7F8FD', padding: '80px 0' }}>
-      <div style={{ textAlign: 'center', marginBottom: 64 }}>
+    <motion.button
+      whileHover={!disabled ? { scale: 1.08, backgroundColor: '#0D1117', color: '#fff' } : {}}
+      whileTap={!disabled ? { scale: 0.94 } : {}}
+      transition={{ duration: 0.15 }}
+      onClick={onClick}
+      disabled={disabled}
+      style={{
+        width: size, height: size, borderRadius: '50%',
+        border: `2px solid ${disabled ? '#E4E6F5' : '#0D1117'}`,
+        background: 'transparent',
+        cursor: disabled ? 'default' : 'pointer',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        color: disabled ? '#C8CCDA' : '#0D1117',
+        flexShrink: 0, outline: 'none',
+        transition: 'border-color 0.2s, background 0.2s, color 0.2s',
+      }}
+    >
+      {direction === 'left'
+        ? <ChevronLeft size={iconSize} strokeWidth={2.5} />
+        : <ChevronRight size={iconSize} strokeWidth={2.5} />}
+    </motion.button>
+  );
+}
+
+function Dots({ total, current, onClick }: {
+  total: number;
+  current: number;
+  onClick: (i: number) => void;
+}) {
+  return (
+    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+      {Array.from({ length: total }).map((_, i) => (
+        <motion.button
+          key={i}
+          onClick={() => onClick(i)}
+          animate={{ width: i === current ? 28 : 8, background: i === current ? '#0D1117' : '#D1D5E0' }}
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          style={{
+            height: 8, borderRadius: 4,
+            border: 'none', cursor: 'pointer', padding: 0,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ─── Main export ─── */
+
+export default function ServiceZigzag() {
+  const [page, setPage] = useState(0);
+  const [mSlide, setMSlide] = useState(0);
+  const [dir, setDir] = useState(1);
+
+  const goPage = (next: number) => {
+    if (next < 0 || next >= TOTAL_PAGES) return;
+    setDir(next > page ? 1 : -1);
+    setPage(next);
+  };
+
+  const goSlide = (next: number) => {
+    if (next < 0 || next >= TOTAL_SLIDES) return;
+    setDir(next > mSlide ? 1 : -1);
+    setMSlide(next);
+  };
+
+  const pageItems = services.slice(page * 2, page * 2 + 2);
+  const curSvc = services[mSlide];
+
+  return (
+    <section style={{ background: '#F7F8FD', padding: '20px 0 114px', overflow: 'hidden', position: 'relative' }}>
+
+      {/* Dot pattern overlay */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: 'radial-gradient(circle, #d4d4d4 1px, transparent 1px)',
+        backgroundSize: '24px 24px',
+        opacity: 0.4,
+        pointerEvents: 'none',
+        zIndex: 0,
+      }} />
+
+      {/* ── Header ── */}
+      <div style={{ textAlign: 'center', marginBottom: 12, padding: '0 24px', position: 'relative', zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -440,204 +536,240 @@ export default function ServiceZigzag() {
           transition={{ duration: 0.6 }}
         >
           <div style={{
-            fontSize: 11,
-            fontWeight: 700,
-            letterSpacing: '0.25em',
-            color: '#A0A8C0',
-            textTransform: 'uppercase',
-            marginBottom: 16,
-            fontFamily: '"Noto Sans KR", sans-serif',
+            fontSize: 11, fontWeight: 700, letterSpacing: '0.28em',
+            color: '#A0A8C0', textTransform: 'uppercase', marginBottom: 10,
           }}>
             What We Do
           </div>
           <h2 style={{
-            fontSize: 'clamp(2rem, 4vw, 3rem)',
-            fontWeight: 900,
-            color: '#0D1117',
-            margin: 0,
-            letterSpacing: '-0.02em',
-            lineHeight: 1.15,
-            fontFamily: '"Noto Serif KR", "Nanum Myeongjo", Georgia, serif',
+            fontSize: 'clamp(1.85rem, 3.2vw, 2.35rem)', fontWeight: 900,
+            color: '#0D1117', margin: 0, letterSpacing: '-0.035em', lineHeight: 1.15,
           }}>
             아미레브가 하는 일
           </h2>
-          <p style={{
-            fontSize: '1.05rem',
-            color: '#64748B',
-            marginTop: 16,
-            fontWeight: 400,
-            letterSpacing: '0.01em',
-          }}>
+          <p style={{ fontSize: '0.92rem', color: '#64748B', marginTop: 10, fontWeight: 400 }}>
             4대 핵심 서비스로 브랜드 성장을 도와드립니다
           </p>
         </motion.div>
       </div>
 
-      <div style={{ maxWidth: 920, margin: '0 auto', padding: '0 24px' }}>
-        {services.map((svc, idx) => {
-          const isReverse = idx % 2 === 1;
-          return (
-            <motion.div
-              key={svc.num}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6 }}
-              style={{
-                display: 'flex',
-                flexDirection: isReverse ? 'row-reverse' : 'row',
-                alignItems: 'center',
-                gap: 48,
-                padding: '64px 0',
-                borderBottom: idx < services.length - 1 ? '1px solid #EBEBF3' : 'none',
-              }}
-              className="service-zigzag-row"
-            >
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <span
-                  style={{
-                    display: 'block',
-                    fontSize: 80,
-                    fontWeight: 900,
-                    color: '#E4E6F5',
-                    lineHeight: 0.9,
-                    marginBottom: -2,
-                    fontFamily: '"Noto Serif KR", Georgia, serif',
-                    letterSpacing: '-0.04em',
-                  }}
-                >
-                  {svc.num}
-                </span>
-                <div
-                  style={{
-                    fontSize: 10,
-                    fontWeight: 700,
-                    letterSpacing: '0.2em',
-                    color: '#A0A8C0',
-                    textTransform: 'uppercase',
-                    marginBottom: 10,
-                    marginTop: 6,
-                  }}
-                >
-                  {svc.cat}
-                </div>
-                <h3
-                  style={{
-                    fontSize: 'clamp(1.5rem, 2.5vw, 1.95rem)',
-                    fontWeight: 800,
-                    color: '#0D1117',
-                    marginBottom: 14,
-                    lineHeight: 1.3,
-                    whiteSpace: 'pre-line',
-                    letterSpacing: '-0.02em',
-                    fontFamily: '"Noto Serif KR", "Nanum Myeongjo", Georgia, serif',
-                  }}
-                >
-                  {svc.title}
-                  {svc.badge}
-                </h3>
-                <p style={{
-                  fontSize: '0.9rem',
-                  color: '#64748B',
-                  lineHeight: 1.9,
-                  marginBottom: 22,
-                  fontWeight: 400,
-                  letterSpacing: '0.01em',
-                }}>
-                  {svc.desc}
-                </p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 22 }}>
-                  {svc.chips.map((c) => (
-                    <span
-                      key={c.label}
+      {/* ══════════════════════════════════════════════
+          PC SLIDER  ·  md and above
+      ══════════════════════════════════════════════ */}
+      <div className="hidden md:block" style={{ position: 'relative', zIndex: 1 }}>
+        <div style={{ maxWidth: 920, margin: '0 auto', padding: '0 28px', position: 'relative' }}>
+
+          {/* Slide area */}
+          <div style={{ overflow: 'hidden', position: 'relative' }}>
+            <AnimatePresence mode="wait" custom={dir}>
+              <motion.div
+                key={`pc-${page}`}
+                custom={dir}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.52, ease: [0.4, 0, 0.2, 1] }}
+              >
+                {pageItems.map((svc, idx) => {
+                  const isReverse = idx % 2 === 1;
+                  return (
+                    <div
+                      key={svc.num}
                       style={{
-                        padding: '5px 13px',
-                        borderRadius: 100,
-                        fontSize: 11.5,
-                        fontWeight: 600,
-                        background: c.bg,
-                        color: c.color,
-                        border: `1px solid ${c.border}`,
-                        letterSpacing: '0.01em',
+                        display: 'flex',
+                        flexDirection: isReverse ? 'row-reverse' : 'row',
+                        alignItems: 'center',
+                        gap: 32,
+                        padding: '10px 0',
+                        borderBottom: idx < pageItems.length - 1 ? '1px solid #EBEBF3' : 'none',
                       }}
                     >
-                      {c.label}
-                    </span>
+                      {/* Text */}
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <span style={{
+                          display: 'block', fontSize: 56, fontWeight: 900,
+                          color: '#E4E6F5', lineHeight: 0.9, marginBottom: 0,
+                          letterSpacing: '-0.04em',
+                        }}>{svc.num}</span>
+                        <div style={{
+                          fontSize: 11, fontWeight: 700, letterSpacing: '0.22em',
+                          color: '#A0A8C0', textTransform: 'uppercase',
+                          marginBottom: 5, marginTop: 4,
+                        }}>{svc.cat}</div>
+                        <h3 style={{
+                          fontSize: 'clamp(1.3rem, 2.1vw, 1.55rem)', fontWeight: 800,
+                          color: '#0D1117', marginBottom: 8, lineHeight: 1.25,
+                          whiteSpace: 'pre-line', letterSpacing: '-0.03em',
+                        }}>
+                          {svc.title}{svc.badge}
+                        </h3>
+                        <p style={{
+                          fontSize: '0.87rem', color: '#64748B', lineHeight: 1.75,
+                          marginBottom: 10,
+                        }}>{svc.desc}</p>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginBottom: 10 }}>
+                          {svc.chips.map((c) => (
+                            <span key={c.label} style={{
+                              padding: '3px 10px', borderRadius: 100, fontSize: 11,
+                              fontWeight: 600, background: c.bg, color: c.color,
+                              border: `1px solid ${c.border}`,
+                            }}>{c.label}</span>
+                          ))}
+                        </div>
+                        <Link href="/services" style={{
+                          fontSize: '0.84rem', fontWeight: 700, color: svc.linkColor,
+                          textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4,
+                        }}>
+                          자세히 보기 →
+                        </Link>
+                      </div>
+
+                      {/* Phone — zoom 0.62 */}
+                      <div style={{ flex: 1.05, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <div style={{ zoom: 0.62 }}>
+                          {svc.phoneMockup}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* PC Navigation bar */}
+          <div style={{
+            display: 'flex', justifyContent: 'center', alignItems: 'center',
+            gap: 20, marginTop: 18,
+          }}>
+            <NavArrow direction="left" onClick={() => goPage(page - 1)} disabled={page === 0} />
+            <Dots total={TOTAL_PAGES} current={page} onClick={goPage} />
+            <NavArrow direction="right" onClick={() => goPage(page + 1)} disabled={page >= TOTAL_PAGES - 1} />
+          </div>
+
+          {/* Counter */}
+          <p style={{
+            textAlign: 'center', marginTop: 8,
+            color: '#B0B6C8', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em',
+          }}>
+            {String(page * 2 + 1).padStart(2, '0')} – {String(page * 2 + 2).padStart(2, '0')} &nbsp;/&nbsp; 04
+          </p>
+        </div>
+      </div>
+
+      {/* ══════════════════════════════════════════════
+          MOBILE SLIDER  ·  below md
+      ══════════════════════════════════════════════ */}
+      <div className="md:hidden" style={{ overflow: 'hidden', position: 'relative', zIndex: 1 }}>
+        <AnimatePresence mode="wait" custom={dir}>
+          <motion.div
+            key={`mob-${mSlide}`}
+            custom={dir}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.38, ease: [0.4, 0, 0.2, 1] }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.1}
+            onDragEnd={(_, info) => {
+              const threshold = 60;
+              if (info.offset.x < -threshold) goSlide(mSlide + 1);
+              else if (info.offset.x > threshold) goSlide(mSlide - 1);
+            }}
+            style={{ cursor: 'grab', userSelect: 'none', WebkitUserSelect: 'none' }}
+          >
+            {/* Phone left + Info right */}
+            <div style={{ display: 'flex', gap: 14, padding: '4px 14px 8px', alignItems: 'center' }}>
+
+              {/* Phone — zoom 0.52, left column */}
+              <div style={{ flexShrink: 0, pointerEvents: 'none' }}>
+                <div style={{ zoom: 0.52 }}>
+                  {curSvc.phoneMockup}
+                </div>
+              </div>
+
+              {/* Info — right column */}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 6 }}>
+                  <span style={{
+                    fontSize: 28, fontWeight: 900, color: '#E4E6F5', lineHeight: 1,
+                    letterSpacing: '-0.04em',
+                  }}>{curSvc.num}</span>
+                  <div style={{
+                    fontSize: 9.5, fontWeight: 700, letterSpacing: '0.18em',
+                    color: '#A0A8C0', textTransform: 'uppercase',
+                  }}>{curSvc.cat}</div>
+                </div>
+
+                <h3 style={{
+                  fontSize: '1.05rem', fontWeight: 800, color: '#0D1117',
+                  marginBottom: 6, lineHeight: 1.3, whiteSpace: 'pre-line',
+                  letterSpacing: '-0.025em',
+                }}>
+                  {curSvc.title}{curSvc.badge}
+                </h3>
+
+                <p style={{
+                  fontSize: '0.77rem', color: '#64748B', lineHeight: 1.6, marginBottom: 8,
+                  display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden',
+                } as React.CSSProperties}>{curSvc.desc}</p>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 8 }}>
+                  {curSvc.chips.slice(0, 3).map((c) => (
+                    <span key={c.label} style={{
+                      padding: '2px 8px', borderRadius: 100, fontSize: 10,
+                      fontWeight: 600, background: c.bg, color: c.color,
+                      border: `1px solid ${c.border}`,
+                    }}>{c.label}</span>
                   ))}
                 </div>
-                <Link
-                  href="/services"
-                  style={{
-                    fontSize: '0.9rem',
-                    fontWeight: 700,
-                    color: svc.linkColor,
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 4,
-                    letterSpacing: '0.02em',
-                  }}
-                >
+
+                <Link href="/services" style={{
+                  fontSize: '0.8rem', fontWeight: 700, color: curSvc.linkColor,
+                  textDecoration: 'none',
+                }}>
                   자세히 보기 →
                 </Link>
               </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
 
-              <div
-                style={{
-                  flex: 1.05,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                {svc.phoneMockup}
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
+        {/* Mobile navigation */}
+        <div style={{
+          display: 'flex', justifyContent: 'center', alignItems: 'center',
+          gap: 14, marginTop: 14, padding: '0 20px',
+        }}>
+          <NavArrow direction="left" onClick={() => goSlide(mSlide - 1)} disabled={mSlide === 0} small />
+          <Dots total={TOTAL_SLIDES} current={mSlide} onClick={goSlide} />
+          <NavArrow direction="right" onClick={() => goSlide(mSlide + 1)} disabled={mSlide >= TOTAL_SLIDES - 1} small />
+        </div>
 
-      <div style={{ textAlign: 'center', paddingTop: 52 }}>
-        <Link
-          href="/services"
-          style={{
-            display: 'inline-block',
-            padding: '14px 36px',
-            borderRadius: 100,
-            border: '2px solid #111827',
-            fontSize: '0.95rem',
-            fontWeight: 700,
-            color: '#111827',
-            textDecoration: 'none',
-            transition: 'all 0.25s ease',
-            letterSpacing: '0.03em',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#111827';
-            e.currentTarget.style.color = 'white';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'transparent';
-            e.currentTarget.style.color = '#111827';
-          }}
-        >
-          모든 서비스 보기
-        </Link>
+        {/* Swipe hint */}
+        <p style={{
+          textAlign: 'center', marginTop: 8,
+          color: '#C8CCDA', fontSize: 11, fontWeight: 500, letterSpacing: '0.05em',
+        }}>
+          ← 스와이프로 넘기기 →
+        </p>
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;800;900&display=swap');
-        @media (max-width: 768px) {
-          .service-zigzag-row {
-            flex-direction: column !important;
-            gap: 32px !important;
-          }
-        }
         @keyframes pulse {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.7; }
         }
       `}</style>
+
+      {/* Wave divider — ServiceZigzag → GallerySection (#FEF9E7) */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', lineHeight: 0, zIndex: 5 }}>
+        <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 100 }}>
+          <path d="M0,50 C300,100 900,0 1200,50 L1200,100 L0,100 Z" fill="#FEF9E7"/>
+        </svg>
+      </div>
     </section>
   );
 }

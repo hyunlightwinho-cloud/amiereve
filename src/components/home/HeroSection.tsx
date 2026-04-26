@@ -109,6 +109,13 @@ export default function HeroSection() {
         </svg>
         <span className="text-[10px] tracking-[0.2em] uppercase">Scroll</span>
       </motion.div>
+
+      {/* Wave divider — dark hero → ServiceZigzag (#F7F8FD) */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', lineHeight: 0, zIndex: 5 }}>
+        <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 100 }}>
+          <path d="M0,50 C300,100 900,0 1200,50 L1200,100 L0,100 Z" fill="#F7F8FD"/>
+        </svg>
+      </div>
     </section>
   )
 }

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Aperture, Play, Globe, Video, UtensilsCrossed, Coffee, Scissors, GraduationCap, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import SectionTitle from '@/components/ui/SectionTitle'
 import Link from 'next/link'
@@ -33,8 +33,8 @@ function HeroSection() {
             우리가 제공하는<br />
             <span className="text-brand-yellow">전문 서비스</span>
           </h1>
-          <p className="text-white/60 text-base md:text-lg leading-relaxed mb-8 max-w-xl">
-            광고대행부터 인플루언서 브랜딩, 소상공인 교육, AI 마케팅까지
+          <p className="text-white/60 text-base md:text-lg leading-relaxed mb-8 mx-auto text-center">
+            광고대행부터 인플루언서 브랜딩, 소상공인 교육, AI 마케팅까지<br />
             아미레브가 브랜드의 성장을 함께합니다.
           </p>
           <div className="flex gap-3 flex-wrap justify-center">
@@ -98,7 +98,7 @@ function Service01Section() {
               </li>
             ))}
           </ul>
-          <Link href="/contact"><Button variant="primary" className="hover:bg-white hover:text-brand-dark">문의하기</Button></Link>
+          <Link href="/contact"><Button variant="outline" className="border-white text-white font-bold hover:bg-white hover:text-brand-dark">문의하기</Button></Link>
         </div>
       </motion.div>
     </section>
@@ -106,10 +106,30 @@ function Service01Section() {
 }
 
 const platformIcons = [
-  { Icon: Aperture, label: 'Instagram' },
-  { Icon: Play, label: 'YouTube' },
-  { Icon: Globe, label: 'Blog' },
-  { Icon: Video, label: 'TikTok' },
+  {
+    label: 'Instagram',
+    svg: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'YouTube',
+    svg: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+      </svg>
+    ),
+  },
+  {
+    label: 'Blog',
+    svg: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/>
+      </svg>
+    ),
+  },
 ]
 
 const service02Checks = [
@@ -136,10 +156,10 @@ function Service02Section() {
           </h2>
 
           <div className="flex gap-4 mb-6">
-            {platformIcons.map(({ Icon, label }) => (
+            {platformIcons.map(({ svg, label }) => (
               <div key={label} className="flex flex-col items-center gap-1">
-                <div className="w-12 h-12 bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                  <Icon size={22} className="text-white" />
+                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all duration-200 text-white">
+                  {svg}
                 </div>
                 <span className="text-xs text-white/60">{label}</span>
               </div>
@@ -173,10 +193,38 @@ function Service02Section() {
 }
 
 const businessIcons = [
-  { Icon: UtensilsCrossed, label: '식당' },
-  { Icon: Coffee, label: '카페' },
-  { Icon: Scissors, label: '미용실' },
-  { Icon: GraduationCap, label: '학원' },
+  {
+    label: '식당',
+    svg: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/>
+      </svg>
+    ),
+  },
+  {
+    label: '카페',
+    svg: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/>
+      </svg>
+    ),
+  },
+  {
+    label: '미용실',
+    svg: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.9 6.858l2.122 2.12-9.9 9.9-2.12-2.12 9.898-9.9zM6.5 5C5.12 5 4 6.12 4 7.5S5.12 10 6.5 10 9 8.88 9 7.5 7.88 5 6.5 5zm11 11c-1.38 0-2.5 1.12-2.5 2.5S16.12 21 17.5 21 20 19.88 20 18.5 18.88 16 17.5 16zm-5.4-4.5l2.12 2.12 3.18-3.18-2.12-2.12-3.18 3.18zM6.5 8C6.22 8 6 7.78 6 7.5S6.22 7 6.5 7 7 7.22 7 7.5 6.78 8 6.5 8z"/>
+      </svg>
+    ),
+  },
+  {
+    label: '학원',
+    svg: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+      </svg>
+    ),
+  },
 ]
 
 const recommendList = [
@@ -220,12 +268,12 @@ function Service03Section() {
           </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-            {businessIcons.map(({ Icon, label }) => (
+            {businessIcons.map(({ svg, label }) => (
               <div
                 key={label}
-                className="group flex flex-col items-center gap-1.5 bg-white hover:bg-brand-yellow py-3 transition-colors cursor-pointer"
+                className="group flex flex-col items-center gap-1.5 bg-white hover:bg-brand-yellow py-3 rounded-xl transition-all duration-200 cursor-pointer text-brand-dark"
               >
-                <Icon size={22} className="text-brand-dark" />
+                {svg}
                 <span className="text-xs text-brand-dark font-medium">{label}</span>
               </div>
             ))}
