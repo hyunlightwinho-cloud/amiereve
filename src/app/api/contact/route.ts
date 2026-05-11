@@ -3,13 +3,13 @@ import { z } from 'zod'
 import { supabase } from '@/lib/supabase'
 
 const schema = z.object({
-  name: z.string().min(2),
+  name: z.string().min(2).max(100),
   phone: z.string().regex(/^01[0-9]-?\d{3,4}-?\d{4}$/),
-  email: z.string().email(),
-  service_type: z.array(z.string()).optional(),
-  date: z.string().optional(),
-  time: z.string().optional(),
-  message: z.string().min(10),
+  email: z.string().email().max(254),
+  service_type: z.array(z.string().max(100)).max(10).optional(),
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+  time: z.string().regex(/^\d{2}:\d{2}$/).optional(),
+  message: z.string().min(10).max(5000),
   privacy: z.boolean(),
 })
 
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
   const result = schema.safeParse(body)
   if (!result.success) {
-    return NextResponse.json({ error: '입력값을 확인해주세요', details: result.error.flatten() }, { status: 400 })
+    return NextResponse.json({ error: '입력값을 확인해주세요' }, { status: 400 })
   }
 
   if (supabase) {
