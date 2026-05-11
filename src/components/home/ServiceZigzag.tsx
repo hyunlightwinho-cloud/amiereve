@@ -37,7 +37,7 @@ function PhoneFrame({
     <motion.div
       animate={{ y: [0, -14, 0] }}
       transition={{ duration, repeat: Infinity, ease: 'easeInOut' }}
-      style={{ position: 'relative', width: 280, filter: 'drop-shadow(0 40px 60px rgba(0,0,0,0.22))' }}
+      style={{ position: 'relative', width: 280, filter: 'drop-shadow(0 18px 28px rgba(0,0,0,0.10))' }}
     >
       {/* Volume buttons (left) */}
       <div style={{ position: 'absolute', left: -4, top: 96, width: 4, height: 28, background: 'linear-gradient(to right, #1a1a1a, #3a3a3a)', borderRadius: '4px 0 0 4px' }} />
@@ -547,7 +547,7 @@ export default function ServiceZigzag() {
           }}>
             아미레브가 하는 일
           </h2>
-          <p style={{ fontSize: '0.92rem', color: '#64748B', marginTop: 10, fontWeight: 400 }}>
+          <p style={{ fontSize: 'clamp(0.8rem, 2.5vw, 0.92rem)', color: '#64748B', marginTop: 10, fontWeight: 400 }}>
             4대 핵심 서비스로 브랜드 성장을 도와드립니다
           </p>
         </motion.div>
@@ -625,9 +625,9 @@ export default function ServiceZigzag() {
                         </Link>
                       </div>
 
-                      {/* Phone — zoom 0.62 */}
+                      {/* Phone — zoom 0.78 */}
                       <div style={{ flex: 1.05, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <div style={{ zoom: 0.62 }}>
+                        <div style={{ zoom: 0.78 }}>
                           {svc.phoneMockup}
                         </div>
                       </div>
@@ -682,11 +682,11 @@ export default function ServiceZigzag() {
             style={{ cursor: 'grab', userSelect: 'none', WebkitUserSelect: 'none' }}
           >
             {/* Phone left + Info right */}
-            <div style={{ display: 'flex', gap: 14, padding: '4px 14px 8px', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: 14, padding: '4px 8px 8px', alignItems: 'center' }}>
 
-              {/* Phone — zoom 0.52, left column */}
+              {/* Phone — zoom 0.82, left column */}
               <div style={{ flexShrink: 0, pointerEvents: 'none' }}>
-                <div style={{ zoom: 0.52 }}>
+                <div style={{ zoom: 0.82 }}>
                   {curSvc.phoneMockup}
                 </div>
               </div>
@@ -705,7 +705,7 @@ export default function ServiceZigzag() {
                 </div>
 
                 <h3 style={{
-                  fontSize: '1.05rem', fontWeight: 800, color: '#0D1117',
+                  fontSize: 'clamp(0.875rem, 3vw, 1.05rem)', fontWeight: 800, color: '#0D1117',
                   marginBottom: 6, lineHeight: 1.3, whiteSpace: 'pre-line',
                   letterSpacing: '-0.025em',
                 }}>
@@ -764,12 +764,6 @@ export default function ServiceZigzag() {
         }
       `}</style>
 
-      {/* Wave divider — ServiceZigzag → GallerySection (#FEF9E7) */}
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', lineHeight: 0, zIndex: 5 }}>
-        <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 100 }}>
-          <path d="M0,50 C300,100 900,0 1200,50 L1200,100 L0,100 Z" fill="#FEF9E7"/>
-        </svg>
-      </div>
     </section>
   );
 }

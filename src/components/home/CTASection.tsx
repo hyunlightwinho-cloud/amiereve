@@ -6,10 +6,10 @@ import { ArrowRight, MessageCircle } from 'lucide-react'
 
 export default function CTASection() {
   return (
-    <section className="pb-24 bg-brand-yellow relative" style={{ paddingTop: 196 }}>
-      {/* Decorative circles */}
-      <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-black/5 pointer-events-none" />
-      <div className="absolute -bottom-16 -left-16 w-60 h-60 rounded-full bg-black/5 pointer-events-none" />
+    <section className="py-24 bg-brand-yellow relative">
+      {/* Decorative circles — desktop only to avoid mobile overflow */}
+      <div className="hidden md:block absolute -top-20 -right-20 w-80 h-80 rounded-full bg-black/5 pointer-events-none" />
+      <div className="hidden md:block absolute -bottom-16 -left-16 w-60 h-60 rounded-full bg-black/5 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10">
@@ -46,6 +46,8 @@ export default function CTASection() {
             </Link>
             <a
               href={process.env.NEXT_PUBLIC_KAKAO_CHANNEL_URL || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-brand-dark/25 text-brand-dark font-semibold hover:border-brand-dark transition-colors duration-200 w-full sm:w-auto"
             >
               <MessageCircle size={18} />

@@ -6,6 +6,62 @@ import Tag from '@/components/ui/Tag'
 import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
 
+const STARS = [
+  { left:  '4%',  top: '12%', size: 3, delay: 0.0,  dur: 2.8 },
+  { left: '11%',  top: '34%', size: 2, delay: 1.4,  dur: 3.5 },
+  { left: '18%',  top: '61%', size: 4, delay: 0.7,  dur: 2.4 },
+  { left: '25%',  top: '22%', size: 2, delay: 2.1,  dur: 4.0 },
+  { left: '32%',  top: '78%', size: 3, delay: 0.3,  dur: 3.2 },
+  { left: '39%',  top: '45%', size: 2, delay: 3.0,  dur: 2.6 },
+  { left: '46%',  top: '15%', size: 4, delay: 1.8,  dur: 3.8 },
+  { left: '53%',  top: '68%', size: 2, delay: 0.5,  dur: 2.9 },
+  { left: '60%',  top: '33%', size: 3, delay: 2.6,  dur: 3.4 },
+  { left: '67%',  top: '82%', size: 2, delay: 1.1,  dur: 2.5 },
+  { left: '74%',  top: '20%', size: 4, delay: 3.7,  dur: 4.1 },
+  { left: '81%',  top: '55%', size: 2, delay: 0.9,  dur: 3.0 },
+  { left: '88%',  top: '38%', size: 3, delay: 2.3,  dur: 2.7 },
+  { left: '94%',  top: '72%', size: 2, delay: 1.5,  dur: 3.6 },
+  { left:  '8%',  top: '88%', size: 3, delay: 4.2,  dur: 2.8 },
+  { left: '15%',  top: '47%', size: 2, delay: 0.2,  dur: 3.3 },
+  { left: '22%',  top: '93%', size: 4, delay: 2.8,  dur: 4.2 },
+  { left: '49%',  top: '90%', size: 2, delay: 1.0,  dur: 2.6 },
+  { left: '63%',  top: '8%',  size: 3, delay: 3.4,  dur: 3.1 },
+  { left: '77%',  top: '95%', size: 2, delay: 0.6,  dur: 3.7 },
+  { left: '35%',  top: '5%',  size: 4, delay: 4.8,  dur: 2.9 },
+  { left: '57%',  top: '52%', size: 2, delay: 1.7,  dur: 3.5 },
+  { left: '90%',  top: '15%', size: 3, delay: 2.0,  dur: 2.4 },
+  { left: '43%',  top: '70%', size: 2, delay: 5.1,  dur: 4.0 },
+  { left: '71%',  top: '43%', size: 3, delay: 0.8,  dur: 3.2 },
+]
+
+function CaseStars() {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -1 }} aria-hidden>
+      {STARS.map((s, i) => (
+        <span
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            left: s.left,
+            top: s.top,
+            width: s.size,
+            height: s.size,
+            background: i % 3 === 0
+              ? 'rgba(254,229,0,0.9)'
+              : i % 3 === 1
+              ? 'rgba(255,255,255,0.85)'
+              : 'rgba(254,229,0,0.6)',
+            boxShadow: i % 3 === 0
+              ? `0 0 ${s.size * 2}px ${s.size}px rgba(254,229,0,0.4)`
+              : `0 0 ${s.size * 2}px ${s.size}px rgba(255,255,255,0.3)`,
+            animation: `case-star-twinkle ${s.dur}s ease-in-out ${s.delay}s infinite`,
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 22 },
   whileInView: { opacity: 1, y: 0 },
@@ -15,11 +71,17 @@ const fadeUp = (delay = 0) => ({
 
 export default function CaseSection() {
   return (
-    <section className="py-16 md:py-24 bg-brand-dark overflow-hidden relative">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+    <section className="py-16 md:py-24 overflow-hidden relative isolate" style={{ background: '#111111' }}>
+      {/* Wave background */}
+      <div className="case-wave" aria-hidden>
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative" style={{ zIndex: 1 }}>
         <SectionTitle title="고객 사례" light />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -31,7 +93,7 @@ export default function CaseSection() {
               <Tag className="mb-4">유튜브 운영대행</Tag>
             </motion.div>
 
-            <motion.h3 {...fadeUp(0.12)} className="text-white text-3xl font-extrabold mb-2 tracking-tight">
+            <motion.h3 {...fadeUp(0.12)} className="text-white text-2xl sm:text-3xl font-extrabold mb-2 tracking-tight">
               이미나 약사
             </motion.h3>
 
@@ -45,11 +107,11 @@ export default function CaseSection() {
               <Tag color="bg-white/10 text-white">콘텐츠 전략</Tag>
             </motion.div>
 
-            <motion.div {...fadeUp(0.28)} className="grid grid-cols-2 gap-4 mb-8">
+            <motion.div {...fadeUp(0.28)} className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
               <motion.div
                 whileHover={{ scale: 1.03, y: -2 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="bg-brand-yellow p-5 rounded-xl relative overflow-hidden cursor-default"
+                className="bg-brand-yellow p-5 relative overflow-hidden cursor-default"
               >
                 {/* 글로우 */}
                 <div className="absolute -top-4 -right-4 w-20 h-20 bg-white/20 rounded-full blur-2xl pointer-events-none" />
@@ -60,7 +122,7 @@ export default function CaseSection() {
               <motion.div
                 whileHover={{ scale: 1.03, y: -2 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="bg-white/10 p-5 rounded-xl relative overflow-hidden cursor-default border border-white/5 hover:border-white/20 transition-colors duration-300"
+                className="bg-white/10 p-5 relative overflow-hidden cursor-default border border-white/5 hover:border-white/20 transition-colors duration-300"
               >
                 <p className="text-white text-2xl font-bold">144개</p>
                 <p className="text-white/60 text-sm mt-1">업로드 영상</p>
@@ -74,7 +136,7 @@ export default function CaseSection() {
             <motion.div {...fadeUp(0.38)} className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/cases"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-semibold px-6 py-3 hover:bg-white hover:text-brand-dark transition-all duration-200 w-full sm:w-auto rounded-xl"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-semibold px-6 py-3 hover:bg-white hover:text-brand-dark transition-all duration-200 w-full sm:w-auto"
               >
                 사례 전체 보기 →
               </Link>
@@ -82,7 +144,7 @@ export default function CaseSection() {
                 href="https://www.youtube.com/@yak_up_mina"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white/60 font-semibold px-6 py-3 hover:border-white/60 hover:text-white transition-all duration-200 w-full sm:w-auto rounded-xl"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white/60 font-semibold px-6 py-3 hover:border-white/60 hover:text-white transition-all duration-200 w-full sm:w-auto"
               >
                 채널 보기 <ExternalLink size={14} />
               </a>
@@ -99,7 +161,7 @@ export default function CaseSection() {
             <motion.div
               whileHover={{ y: -4 }}
               transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-              className="overflow-hidden border border-white/10 rounded-2xl shadow-2xl"
+              className="overflow-hidden border border-white/10 shadow-2xl"
             >
               {/* YouTube 채널 헤더 */}
               <div className="bg-[#FF0000] px-5 py-3.5 flex items-center justify-between">
@@ -116,7 +178,7 @@ export default function CaseSection() {
                   href="https://www.youtube.com/@yak_up_mina"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 bg-white text-[#FF0000] text-xs font-bold px-3 py-1.5 rounded-full hover:bg-white/90 transition-colors"
+                  className="flex items-center gap-1.5 bg-white text-[#FF0000] text-xs font-bold px-3 py-1.5 hover:bg-white/90 transition-colors"
                 >
                   구독 <ExternalLink size={11} />
                 </a>
@@ -137,13 +199,6 @@ export default function CaseSection() {
         </div>
       </div>
 
-      {/* Wave divider — dark case section → ReviewsSection (#F7F5F0) */}
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', lineHeight: 0, zIndex: 5 }}>
-        <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 100 }}>
-          <path d="M0,0 L1200,0 L1200,80 C900,60 300,100 0,80 Z" fill="#1A1A1A"/>
-          <path d="M0,80 C300,100 900,60 1200,80 L1200,100 L0,100 Z" fill="#F7F5F0"/>
-        </svg>
-      </div>
     </section>
   )
 }

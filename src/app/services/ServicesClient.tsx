@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import SectionTitle from '@/components/ui/SectionTitle'
 import Link from 'next/link'
@@ -17,10 +16,20 @@ const anchorLinks = [
 
 function HeroSection() {
   return (
-    <section className="relative bg-brand-dark overflow-hidden">
-      <div className="h-1.5 w-full bg-brand-yellow" />
+    <section className="relative bg-white overflow-hidden border-b border-brand-border">
+      <Image
+        src="/images/Gemini_Generated_Image_c2et12c2et12c2et.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center pointer-events-none"
+        style={{ opacity: 0.3 }}
+        aria-hidden="true"
+      />
+      <div className="absolute top-0 left-0 w-full h-1 bg-brand-yellow z-10" />
 
-      <div className="container mx-auto px-6 pt-28 pb-14 max-w-4xl text-center">
+      <div className="relative z-10 container mx-auto px-6 pt-16 pb-14 max-w-4xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -29,20 +38,20 @@ function HeroSection() {
           <span className="inline-block bg-brand-yellow text-brand-dark text-xs font-bold tracking-widest uppercase px-3 py-1 mb-5">
             서비스
           </span>
-          <h1 className="text-white text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-5">
+          <h1 className="text-brand-dark text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-5">
             우리가 제공하는<br />
             <span className="text-brand-yellow">전문 서비스</span>
           </h1>
-          <p className="text-white/60 text-base md:text-lg leading-relaxed mb-8 mx-auto text-center">
+          <p className="text-brand-gray text-base md:text-lg leading-relaxed mb-8 mx-auto text-center">
             광고대행부터 인플루언서 브랜딩, 소상공인 교육, AI 마케팅까지<br />
             아미레브가 브랜드의 성장을 함께합니다.
           </p>
-          <div className="flex gap-3 flex-wrap justify-center">
+          <div className="flex flex-wrap gap-2 justify-center">
             {anchorLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-4 py-2 border border-white/20 text-white/70 text-sm hover:border-brand-yellow hover:text-brand-yellow transition-colors"
+                className="px-3 py-1.5 md:px-4 md:py-2 border border-brand-border text-brand-gray text-xs md:text-sm hover:border-brand-yellow hover:text-brand-yellow transition-colors"
               >
                 {link.label}
               </Link>
@@ -69,7 +78,7 @@ function Service01Section() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="relative min-h-[320px] md:min-h-0 overflow-hidden"
+        className="relative min-h-[240px] md:min-h-0 overflow-hidden"
       >
         <Image src="/images/gallery/photo-01.jpg" alt="광고대행 현장" fill className="object-cover" sizes="50vw" />
         <div className="absolute inset-0 bg-black/20" />
@@ -80,7 +89,7 @@ function Service01Section() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="bg-brand-yellow flex items-center px-6 py-10 md:px-10 md:py-16"
+        className="bg-brand-yellow flex items-center px-4 py-8 sm:px-6 sm:py-10 md:px-10 md:py-16"
       >
         <div className="max-w-md">
           <span className="text-brand-dark/60 text-sm font-semibold tracking-widest lowercase">service 01</span>
@@ -147,7 +156,7 @@ function Service02Section() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="bg-brand-dark flex items-center px-6 py-10 md:px-10 md:py-16 order-2 md:order-1"
+        className="bg-brand-dark flex items-center px-4 py-8 sm:px-6 sm:py-10 md:px-10 md:py-16 order-2 md:order-1"
       >
         <div className="max-w-md">
           <span className="text-brand-yellow text-sm font-semibold tracking-widest lowercase">service 02</span>
@@ -183,7 +192,7 @@ function Service02Section() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="relative min-h-[320px] md:min-h-0 overflow-hidden order-1 md:order-2"
+        className="relative min-h-[240px] md:min-h-0 overflow-hidden order-1 md:order-2"
       >
         <Image src="/images/gallery/photo-04.jpg" alt="인플루언서 브랜딩 현장" fill className="object-cover" sizes="50vw" />
         <div className="absolute inset-0 bg-black/10" />
@@ -248,7 +257,7 @@ function Service03Section() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="relative min-h-[320px] md:min-h-0 overflow-hidden"
+        className="relative min-h-[240px] md:min-h-0 overflow-hidden"
       >
         <Image src="/images/gallery/photo-02.jpg" alt="소상공인 교육 현장" fill className="object-cover" sizes="50vw" />
         <div className="absolute inset-0 bg-black/20" />
@@ -259,7 +268,7 @@ function Service03Section() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="bg-brand-purple flex items-center px-6 py-10 md:px-10 md:py-16"
+        className="bg-brand-purple flex items-center px-4 py-8 sm:px-6 sm:py-10 md:px-10 md:py-16"
       >
         <div className="max-w-md">
           <span className="text-white/60 text-sm font-semibold tracking-widest lowercase">service 03</span>
@@ -321,7 +330,7 @@ const aiServices = [
 
 function AiSection() {
   return (
-    <section id="ai" className="py-20 md:py-32 bg-gradient-to-r from-[#1A1A1A] via-[#2D1B69] to-[#1A1A1A] text-center">
+    <section id="ai" className="py-20 md:py-32 bg-[#1A1A1A] text-center">
       <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -389,12 +398,61 @@ function AiSection() {
 }
 
 const processSteps = [
-  { num: '01', label: '상담 요청', tip: '빠른 온라인 상담 신청' },
-  { num: '02', label: '니즈 파악', tip: '업종·목표 심층 분석' },
-  { num: '03', label: '전략 수립', tip: '맞춤 마케팅 플랜 설계' },
-  { num: '04', label: '콘텐츠 제작', tip: '전문 크리에이터 제작' },
-  { num: '05', label: '배포·운영', tip: '플랫폼 최적화 운영' },
-  { num: '06', label: '성과 리포트', tip: 'KPI 기반 성과 분석' },
+  {
+    num: '01', label: '상담 요청', tip: '빠른 온라인 상담 신청으로 시작합니다',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-dark">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        <line x1="9" y1="10" x2="15" y2="10"/><line x1="12" y1="7" x2="12" y2="13"/>
+      </svg>
+    ),
+  },
+  {
+    num: '02', label: '니즈 파악', tip: '업종·목표를 심층 분석합니다',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-dark">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+      </svg>
+    ),
+  },
+  {
+    num: '03', label: '전략 수립', tip: '맞춤 마케팅 플랜을 설계합니다',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-dark">
+        <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>
+        <line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
+        <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
+      </svg>
+    ),
+  },
+  {
+    num: '04', label: '콘텐츠 제작', tip: '전문 크리에이터가 제작합니다',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-dark">
+        <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+      </svg>
+    ),
+  },
+  {
+    num: '05', label: '배포·운영', tip: '플랫폼 최적화로 운영합니다',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-dark">
+        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/>
+        <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/>
+        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+      </svg>
+    ),
+  },
+  {
+    num: '06', label: '성과 리포트', tip: 'KPI 기반으로 성과를 분석합니다',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-brand-dark">
+        <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+        <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+      </svg>
+    ),
+  },
 ]
 
 function ProcessSection() {
@@ -446,102 +504,46 @@ function ProcessSection() {
           ))}
         </div>
 
-        <div className="md:hidden space-y-6 mt-12 relative">
-          <div className="absolute left-7 top-0 bottom-0 w-0.5 bg-brand-border" />
+        <div className="md:hidden mt-10 space-y-0">
           {processSteps.map((step, i) => (
             <motion.div
               key={step.num}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="flex items-center gap-5 pl-2"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
             >
-              <div className="w-10 h-10 bg-brand-dark text-white flex items-center justify-center font-bold text-sm shrink-0 relative z-10">
-                {step.num}
+              <div className="relative flex gap-4 p-5 bg-white border border-brand-border">
+                {/* 왼쪽 번호 + 아이콘 */}
+                <div className="flex flex-col items-center gap-2 shrink-0 w-14">
+                  <div className="w-11 h-11 rounded-full flex items-center justify-center shadow-lg bg-brand-yellow">
+                    {step.icon}
+                  </div>
+                  <span className="text-[10px] font-black tracking-widest text-brand-gray">
+                    {step.num}
+                  </span>
+                </div>
+
+                {/* 오른쪽 텍스트 */}
+                <div className="flex-1 pt-1.5">
+                  <p className="font-extrabold text-base tracking-tight leading-tight mb-1 text-brand-dark">
+                    {step.label}
+                  </p>
+                  <p className="text-sm leading-relaxed text-brand-gray">
+                    {step.tip}
+                  </p>
+                </div>
               </div>
-              <span className="font-semibold text-brand-dark">{step.label}</span>
+
+              {/* 화살표 커넥터 */}
+              {i < processSteps.length - 1 && (
+                <div className="flex items-center justify-center h-6 bg-brand-light">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M7 1L7 10M7 10L3 6.5M7 10L11 6.5" stroke="#1A1A1A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+              )}
             </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-const faqs = [
-  {
-    q: '계약 기간은 최소 얼마인가요?',
-    a: '기본 계약 기간은 3개월입니다. 단기 프로젝트성 협업도 가능하니 상담을 통해 맞춤 일정을 협의드립니다.',
-  },
-  {
-    q: '어떤 업종이든 가능한가요?',
-    a: '식음료, 뷰티, 교육, 서비스업 등 다양한 업종의 경험이 있습니다. 업종에 따라 최적화된 전략을 제안드립니다.',
-  },
-  {
-    q: '콘텐츠 방향은 누가 정하나요?',
-    a: '초기 전략 수립 단계에서 클라이언트와 충분한 협의를 통해 브랜드 방향성을 함께 결정합니다. 이후 아미레브 팀이 실행을 담당합니다.',
-  },
-  {
-    q: 'AI 서비스는 어떤 방식으로 진행되나요?',
-    a: 'ChatGPT, Midjourney, Runway 등 최신 AI 툴을 활용하여 콘텐츠를 제작합니다. AI가 생성한 결과물을 전문가가 검토·편집하는 방식으로 품질을 보장합니다.',
-  },
-  {
-    q: '소상공인 교육은 오프라인인가요?',
-    a: '온라인과 오프라인 모두 진행합니다. 지역에 따라 방문 교육도 가능하며, 온라인 1:1 줌(Zoom) 교육도 운영 중입니다.',
-  },
-]
-
-function FaqItem({ faq, index }: { faq: (typeof faqs)[0]; index: number }) {
-  const [open, setOpen] = useState(false)
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.07 }}
-      className="border border-brand-border overflow-hidden"
-    >
-      <button
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        className="w-full flex items-center justify-between px-6 py-5 text-left bg-white hover:bg-brand-light transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow"
-      >
-        <span className="font-semibold text-brand-dark">{faq.q}</span>
-        <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.25 }}>
-          <ChevronDown size={20} className="text-brand-gray shrink-0" />
-        </motion.div>
-      </button>
-
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            key="content"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="overflow-hidden"
-          >
-            <div className="px-6 py-5 bg-brand-light border-t border-brand-border">
-              <p className="text-brand-gray leading-relaxed">{faq.a}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  )
-}
-
-function FaqSection() {
-  return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-6 max-w-3xl">
-        <SectionTitle title="자주 묻는 질문" subtitle="궁금한 점을 해결해 드립니다" />
-        <div className="space-y-3 mt-4">
-          {faqs.map((faq, i) => (
-            <FaqItem key={i} faq={faq} index={i} />
           ))}
         </div>
       </div>
@@ -551,14 +553,13 @@ function FaqSection() {
 
 export default function ServicesClient() {
   return (
-    <main>
+    <main className="pt-16">
       <HeroSection />
       <Service01Section />
       <Service02Section />
       <Service03Section />
       <AiSection />
       <ProcessSection />
-      <FaqSection />
     </main>
   )
 }

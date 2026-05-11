@@ -24,7 +24,7 @@ export default function SectionTitle({ title, subtitle, className, light = false
         <>
           <div className="inline-flex items-center gap-2 mb-4">
             <span className="w-5 h-px bg-brand-yellow" />
-            <span className={cn('text-xs font-semibold tracking-[0.2em] uppercase', light ? 'text-brand-yellow' : 'text-brand-yellow')}>{title}</span>
+            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-brand-yellow">{title}</span>
             <span className="w-5 h-px bg-brand-yellow" />
           </div>
           {subtitle && (
@@ -39,7 +39,7 @@ export default function SectionTitle({ title, subtitle, className, light = false
           <div>
             <h2
               className={cn(
-                'text-3xl md:text-[2.6rem] font-extrabold leading-tight',
+                'text-2xl sm:text-3xl md:text-[2.6rem] font-extrabold leading-tight',
                 light ? 'text-white' : 'text-brand-dark',
               )}
             >

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ExternalLink, Users, PlaySquare, TrendingUp, ArrowRight, Clock } from 'lucide-react'
@@ -11,9 +12,19 @@ export default function CasesClient() {
 
       {/* ── HERO ── */}
       <section className="relative bg-white overflow-hidden border-b border-brand-border">
-        <div className="absolute top-0 left-0 w-full h-1 bg-brand-yellow" />
+        <Image
+          src="/images/Gemini_Generated_Image_2gmg8w2gmg8w2gmg.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center pointer-events-none"
+          style={{ opacity: 0.3 }}
+          aria-hidden="true"
+        />
+        <div className="absolute top-0 left-0 w-full h-1 bg-brand-yellow z-10" />
 
-        <div className="max-w-4xl mx-auto px-5 sm:px-6 pt-20 pb-12 md:pt-24 md:pb-16 text-center">
+        <div className="relative z-10 max-w-4xl mx-auto px-5 sm:px-6 pt-20 pb-12 md:pt-24 md:pb-16 text-center">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -28,7 +39,7 @@ export default function CasesClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
           >
-            <h1 className="text-brand-dark text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.1] tracking-tight mb-4">
+            <h1 className="text-brand-dark text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-4">
               고객과 함께 만든{' '}
               <span className="relative inline-block">
                 결과
@@ -135,17 +146,45 @@ export default function CasesClient() {
               transition={{ duration: 0.7 }}
               className="space-y-4"
             >
-              <div className="bg-gradient-to-br from-[#1a5c35] to-[#0a2e1a] rounded-2xl p-8 text-center">
-                <p className="text-white/40 text-xs tracking-widest uppercase mb-2">약사 가르치는 1타강사</p>
-                <h3 className="text-white text-3xl font-extrabold mb-1">이미나 약사</h3>
-                <p className="text-white/40 text-sm mb-5">@yak_up_mina</p>
-                <div className="inline-flex items-center gap-2 bg-brand-yellow/20 border border-brand-yellow/30 px-4 py-1.5 rounded-full">
-                  <span className="w-2 h-2 rounded-full bg-brand-yellow animate-pulse" />
-                  <span className="text-brand-yellow text-xs font-bold">운영 진행 중</span>
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+                className="overflow-hidden border border-brand-border rounded-2xl shadow-2xl"
+              >
+                {/* YouTube 채널 헤더 */}
+                <div className="bg-[#FF0000] px-5 py-3.5 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <svg viewBox="0 0 24 24" className="w-7 h-7 fill-white flex-shrink-0" aria-label="YouTube">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    <div>
+                      <p className="text-white font-bold text-sm leading-none">이미나 약사</p>
+                      <p className="text-white/70 text-[11px] mt-0.5">@yak_up_mina</p>
+                    </div>
+                  </div>
+                  <a
+                    href="https://www.youtube.com/@yak_up_mina"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 bg-white text-[#FF0000] text-xs font-bold px-3 py-1.5 rounded-full hover:bg-white/90 transition-colors"
+                  >
+                    구독 <ExternalLink size={11} />
+                  </a>
                 </div>
-              </div>
 
-              <div className="grid grid-cols-3 gap-3">
+                {/* 대표 영상 임베드 */}
+                <div className="relative w-full bg-black" style={{ paddingTop: '56.25%' }}>
+                  <iframe
+                    src="https://www.youtube.com/embed/kcSOvt6gO30?rel=0&modestbranding=1&vq=hd1080"
+                    title="이미나 약사 유튜브 대표 영상"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </motion.div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {[
                   { Icon: Users, label: '구독자', node: <span>추가 예정</span> },
                   { Icon: PlaySquare, label: '업로드 영상', node: <span>추가 예정</span> },

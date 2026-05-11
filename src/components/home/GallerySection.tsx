@@ -10,18 +10,17 @@ import galleryImages from '@/data/galleryImages'
 
 const ROW1 = galleryImages.slice(0, 5)
 const ROW2 = galleryImages.slice(5, 10)
-const ITEM_W = 360
 const ITEM_GAP = 16
 
 export default function GallerySection() {
   const [lightboxIndex, setLightboxIndex] = useState(-1)
+  const ITEM_W = 360
   const slides = galleryImages.map((img) => ({ src: img.src, alt: img.alt }))
 
   return (
-    <section className="pb-24 overflow-hidden" style={{
+    <section className="py-24 overflow-hidden" style={{
       background: 'linear-gradient(to bottom, #FEF9E7 0%, #FDFAF3 180px, #FDFAF3 calc(100% - 80px), #FEF9E7 100%)',
       position: 'relative',
-      paddingTop: 196,
     }}>
       <motion.div
         className="max-w-7xl mx-auto px-4 md:px-8 mb-14"
@@ -44,14 +43,15 @@ export default function GallerySection() {
               <div
                 key={`r1-${i}`}
                 className="gallery-card group"
-                style={{ width: ITEM_W, marginRight: ITEM_GAP }}
+                style={{ width: 'clamp(160px, 55vw, 360px)', marginRight: ITEM_GAP }}
                 onClick={() => setLightboxIndex(galleryImages.findIndex((g) => g.id === img.id))}
               >
                 <Image
                   src={img.src}
                   alt={img.alt}
                   fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="object-cover"
+                  style={{ animationDelay: `${(i % 5) * 1.2}s` }}
                   sizes={`${ITEM_W}px`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
@@ -74,14 +74,15 @@ export default function GallerySection() {
               <div
                 key={`r2-${i}`}
                 className="gallery-card group"
-                style={{ width: ITEM_W, marginRight: ITEM_GAP }}
+                style={{ width: 'clamp(160px, 55vw, 360px)', marginRight: ITEM_GAP }}
                 onClick={() => setLightboxIndex(galleryImages.findIndex((g) => g.id === img.id))}
               >
                 <Image
                   src={img.src}
                   alt={img.alt}
                   fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="object-cover"
+                  style={{ animationDelay: `${(i % 5) * 1.5}s` }}
                   sizes={`${ITEM_W}px`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
@@ -102,12 +103,6 @@ export default function GallerySection() {
         slides={slides}
       />
 
-      {/* Wave divider — GallerySection → CaseSection (#1A1A1A) */}
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', lineHeight: 0, zIndex: 5 }}>
-        <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 100 }}>
-          <path d="M0,50 C300,100 900,0 1200,50 L1200,100 L0,100 Z" fill="#1A1A1A"/>
-        </svg>
-      </div>
     </section>
   )
 }

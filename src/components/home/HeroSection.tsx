@@ -31,7 +31,7 @@ export default function HeroSection() {
           className="inline-flex items-center gap-2 mb-6"
         >
           <span className="w-6 h-px bg-brand-yellow" />
-          <span className="text-brand-yellow tracking-[0.25em] text-xs uppercase font-semibold">
+          <span className="text-brand-yellow tracking-[0.25em] text-sm uppercase font-semibold">
             광고대행 · 브랜딩 · AI 마케팅
           </span>
           <span className="w-6 h-px bg-brand-yellow" />
@@ -97,25 +97,6 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50"
-      >
-        <svg width="20" height="30" viewBox="0 0 20 30" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <rect x="1" y="1" width="18" height="28" rx="0" />
-          <path d="M10 8v6" strokeLinecap="round" />
-        </svg>
-        <span className="text-[10px] tracking-[0.2em] uppercase">Scroll</span>
-      </motion.div>
-
-      {/* Wave divider — dark hero → ServiceZigzag (#F7F8FD) */}
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', lineHeight: 0, zIndex: 5 }}>
-        <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 100 }}>
-          <path d="M0,50 C300,100 900,0 1200,50 L1200,100 L0,100 Z" fill="#F7F8FD"/>
-        </svg>
-      </div>
     </section>
   )
 }

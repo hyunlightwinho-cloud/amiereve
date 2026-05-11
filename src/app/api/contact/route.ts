@@ -6,7 +6,7 @@ const schema = z.object({
   name: z.string().min(2),
   phone: z.string().regex(/^01[0-9]-?\d{3,4}-?\d{4}$/),
   email: z.string().email(),
-  service_type: z.array(z.string()),
+  service_type: z.array(z.string()).optional(),
   date: z.string().optional(),
   time: z.string().optional(),
   message: z.string().min(10),
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
 
   if (supabase) {
     const { error } = await supabase.from('reservations').insert({
-      service_type: result.data.service_type,
+      service_type: result.data.service_type ?? [],
       date: result.data.date ?? null,
       time: result.data.time ?? null,
       name: result.data.name,
@@ -41,8 +41,6 @@ export async function POST(req: NextRequest) {
       console.error('[Contact] Supabase 오류:', error.message)
       return NextResponse.json({ error: '예약 저장 중 오류가 발생했습니다' }, { status: 500 })
     }
-  } else {
-    console.log('[Contact] 예약 데이터 (Supabase 미설정):', result.data)
   }
 
   return NextResponse.json({ success: true })

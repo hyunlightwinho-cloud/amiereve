@@ -26,12 +26,9 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => { document.body.style.overflow = '' }
+    if (typeof document === 'undefined') return
+    document.body.classList.toggle('overflow-hidden', menuOpen)
+    return () => { document.body.classList.remove('overflow-hidden') }
   }, [menuOpen])
 
   useEffect(() => {
@@ -74,12 +71,6 @@ export default function Navbar() {
                 )}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="bg-brand-yellow text-brand-dark text-sm font-bold px-5 py-2 hover:bg-brand-yellow-dark transition-colors duration-200 rounded"
-            >
-              상담 예약
-            </Link>
           </div>
 
           {/* Mobile Hamburger */}
@@ -112,7 +103,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed top-0 right-0 h-full w-72 bg-white z-50 flex flex-col"
+              className="fixed top-0 right-0 h-full w-[min(288px,80vw)] bg-white z-50 flex flex-col"
             >
               <div className="flex items-center justify-between p-5 border-b border-brand-border">
                 <div className="flex flex-col leading-none">
@@ -133,21 +124,20 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      className="block py-4 px-4 text-brand-dark font-medium hover:bg-brand-light transition-colors"
+                      className={`flex items-center justify-between py-4 px-4 font-medium transition-colors ${
+                        pathname === link.href
+                          ? 'bg-brand-yellow/15 text-brand-dark border-l-2 border-brand-yellow'
+                          : 'text-brand-dark hover:bg-brand-light'
+                      }`}
                     >
-                      {link.label}
+                      <span>{link.label}</span>
+                      {pathname === link.href && (
+                        <span className="text-[10px] font-bold tracking-widest uppercase text-brand-dark/50">현재</span>
+                      )}
                     </Link>
                   </motion.div>
                 ))}
               </nav>
-              <div className="p-5">
-                <Link
-                  href="/contact"
-                  className="block text-center bg-brand-yellow text-brand-dark font-bold py-4 hover:bg-brand-yellow-dark transition-colors rounded"
-                >
-                  상담 예약
-                </Link>
-              </div>
             </motion.div>
           </>
         )}
